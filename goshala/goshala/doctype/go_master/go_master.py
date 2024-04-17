@@ -18,21 +18,7 @@ def fetch_go_master_list():
 
 @frappe.whitelist()
 def fetch_customer_list():
-    # Fetch data from the Go Master doctype
-    customer_list = frappe.get_all('Customer', filters={}, fields=['name'])
-    return [cus.name for cus in customer_list]
-
-@frappe.whitelist()
-def fetch_customer_list():
-    # Fetch data from the Go Master doctype
-    customer_list = frappe.get_all('Customer', filters={}, fields=['name'])
-    # Modify the fields to include 'morning_qty_add'
-    return [{'name': cus.name, 'morning_qty_add': get_morning_qty_add(cus.name)} for cus in customer_list]
-
-def get_morning_qty_add(customer_name):
-    # Write your logic to fetch morning_qty_add for the given customer
-    # For example:
-    # morning_qty_add = frappe.db.get_value('YourTable', {'customer': customer_name}, 'morning_qty_add')
-    morning_qty_add = 10  # Placeholder value, replace it with your actual logic
-    return morning_qty_add
+    # Fetch data from the Customer doctype including 'morning_qty' field
+    customer_list = frappe.get_all('Customer', filters={}, fields=['name','custom_morning_qty','custom_evening_qty','custom_pick_up','custom_delivery_man','custom_pickup_counter'])
+    return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty':cus.custom_evening_qty, 'pick_up':cus.custom_pick_up, 'delivery_man':cus.custom_delivery_man, 'pickup_counter':cus.custom_pickup_counter} for cus in customer_list]
 

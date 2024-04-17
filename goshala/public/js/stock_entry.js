@@ -59,64 +59,42 @@ function fetchGoMasterListForFiltering(frm) {
 
 // Get Customer from Customer where Customer is enabled
 
-frappe.ui.form.on('Stock Entry', {
-    stock_entry_type(frm) {
-        if (frm.doc.stock_entry_type === 'Milk Sales') {
-            frm.add_custom_button(__('Get Customer'), function() {
-                fetch_customer_list(frm);
-            });
-        }
-    }
-});
+// frappe.ui.form.on('Stock Entry', {
+//     stock_entry_type(frm) {
+//         if (frm.doc.stock_entry_type === 'Milk Sales') {
+//             frm.add_custom_button(__('Get Customer'), function() {
+//                 fetch_customer_list(frm);
+//             });
+//         }
+//     }
+// });
 
-function fetch_customer_list(frm) {
-    // Make an AJAX call to fetch data from the Go Master doctype
-    frappe.call({
-        method: 'goshala.goshala.doctype.go_master.go_master.fetch_customer_list',
-        callback: function(response) {
-            console.log(response.message);
-            if (response.message) {
-                // Clear existing child table rows
-                frm.clear_table('items');
+// function fetch_customer_list(frm) {
+//     // Make an AJAX call to fetch data from the Go Master doctype
+//     frappe.call({
+//         method: 'goshala.goshala.doctype.go_master.go_master.fetch_customer_list',
+//         callback: function(response) {
+//             console.log(response.message);
+//             if (response.message) {
+//                 // Clear existing child table rows
+//                 frm.clear_table('items');
 
-                // Iterate through the fetched data and add it to the child table
-                response.message.forEach(function(cus) {
-                    var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
-                    row.custom_customer_name = cus;
-                    console.log(cus)
-                    // Set other fields as needed
-                });
+//                 // Iterate through the fetched data and add it to the child table
+//                 response.message.forEach(function(cus) {
+//                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
+//                     row.custom_customer_name = cus.name;
+//                     row.custom_pickup = cus.pick_up;
+//                     row.custom_delivery_man = cus.delivery_man;
+//                     row.custom_pickup_counter = cus.pickup_counter;
+//                     row.custom_morning_qty = cus.morning_qty;
+//                     row.custom_evening_qty = cus.evening_qty; 
+//                     console.log(cus);
+//                 });
 
-                // Refresh the form to reflect the changes
-                frm.refresh_field('items');
-            }
-        }
-    });
-}
+//                 // Refresh the form to reflect the changes
+//                 frm.refresh_field('items');
+//             }
+//         }
+//     });
+// }
 
-
-function fetch_customer_list(frm) {
-    // Make an AJAX call to fetch data from the Go Master doctype
-    frappe.call({
-        method: 'goshala.goshala.doctype.go_master.go_master.fetch_customer_list',
-        callback: function(response) {
-            console.log(response.message);
-            if (response.message) {
-                // Clear existing child table rows
-                frm.clear_table('items');
-
-                // Iterate through the fetched data and add it to the child table
-                response.message.forEach(function(cus) {
-                    var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
-                    row.custom_customer_name = cus.name;
-                    row.morning_qty_add = cus.morning_qty_add; // Add morning_qty_add to the row
-                    console.log(cus)
-                    // Set other fields as needed
-                });
-
-                // Refresh the form to reflect the changes
-                frm.refresh_field('items');
-            }
-        }
-    });
-}
