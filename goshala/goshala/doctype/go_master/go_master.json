@@ -1,0 +1,261 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:go_name",
+ "creation": "2024-04-11 16:54:26.133410",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "go_name",
+  "goshala_name",
+  "date",
+  "seva__death",
+  "sub_type",
+  "column_break_ctzh",
+  "tag_number",
+  "gender",
+  "current_type",
+  "reason",
+  "section_break_kyvv",
+  "type",
+  "staff",
+  "doctor",
+  "column_break_tfzn",
+  "birth_date_time",
+  "father_name",
+  "mother_name",
+  "section_break_exxm",
+  "full_name",
+  "mobile_no",
+  "address",
+  "column_break_dueb",
+  "purchase_date",
+  "donate_date",
+  "city",
+  "pincode",
+  "price",
+  "section_break_qerg",
+  "weight",
+  "photo",
+  "column_break_deel",
+  "colour"
+ ],
+ "fields": [
+  {
+   "fieldname": "goshala_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Goshala Name",
+   "options": "Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Creation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "colour",
+   "fieldtype": "Color",
+   "label": "Colour"
+  },
+  {
+   "fieldname": "mother_name",
+   "fieldtype": "Link",
+   "label": "Mother Name",
+   "options": "Go Master"
+  },
+  {
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father Name"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Int",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Data",
+   "label": "Doctor"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tag Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Gender",
+   "options": "\nMale\nFemale",
+   "reqd": 1
+  },
+  {
+   "fieldname": "staff",
+   "fieldtype": "Link",
+   "label": "Staff",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "section_break_qerg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ctzh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_deel",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Birth\nPurchase\nDonate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_kyvv",
+   "fieldtype": "Section Break",
+   "label": "Go Details"
+  },
+  {
+   "fieldname": "column_break_tfzn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "mobile_no",
+   "fieldtype": "Int",
+   "label": "Mobile No"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "pincode",
+   "fieldtype": "Int",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "birth_date_time",
+   "fieldtype": "Datetime",
+   "label": "Birth Date Time"
+  },
+  {
+   "fieldname": "current_type",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Current Type",
+   "options": "Go Type",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\"",
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "go_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Go Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "price",
+   "fieldtype": "Int",
+   "label": "Price"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Donate\"",
+   "fieldname": "donate_date",
+   "fieldtype": "Date",
+   "label": "Donate Date"
+  },
+  {
+   "depends_on": "eval:doc.seva__death==\"Seva\" || doc.seva__death==\"Death\"",
+   "fieldname": "sub_type",
+   "fieldtype": "Select",
+   "label": "Sub Type",
+   "options": "\nOld Age\nHealth Issue"
+  },
+  {
+   "depends_on": "eval:doc.sub_type==\"Old Age\" || doc.sub_type==\"Health Issue\"",
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "section_break_exxm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_dueb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "seva__death",
+   "fieldtype": "Select",
+   "label": "Seva / Death",
+   "options": "\nSeva\nDeath"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-16 13:37:06.818068",
+ "modified_by": "Administrator",
+ "module": "Goshala",
+ "name": "Go Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

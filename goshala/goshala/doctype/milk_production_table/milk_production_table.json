@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-15 16:00:09.381918",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "go",
+  "morning",
+  "evening",
+  "total"
+ ],
+ "fields": [
+  {
+   "fieldname": "go",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Go",
+   "options": "Go Master"
+  },
+  {
+   "fieldname": "morning",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Morning Qty (Ltr)"
+  },
+  {
+   "fieldname": "evening",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Evening Qty (Ltr)"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Qty (Ltr)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-04-15 16:56:53.287176",
+ "modified_by": "Administrator",
+ "module": "Goshala",
+ "name": "Milk Production Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
