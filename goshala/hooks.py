@@ -231,3 +231,30 @@ doctype_js = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures =[
+    "Property Setter",
+     
+            {"dt":"Client Script","filters":[
+        [
+            "module","in",[
+               "Goshala"
+            ]
+        ]
+    ]},
+            {"dt":"Server Script","filters":[
+        [
+            "module","in",[
+               "Goshala"
+            ]
+        ]
+    ]},
+      
+              {"dt":"Print Format","filters":[
+        [
+            "module","in",[
+               "Goshala"
+            ]
+        ]
+    ]},
+         
+]

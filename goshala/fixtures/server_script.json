@@ -1,0 +1,21 @@
+[
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 1,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2024-04-16 16:34:11.488270",
+  "module": "Goshala",
+  "name": "Stock Entry Milk Table",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Stock Entry",
+  "script": "def before_save(doc, method):\n    set_total_milk(doc)\n\ndef set_total_milk(doc):\n    total_milk = 0\n    # total_morning_milk = 0\n    # total_evening_milk = 0\n    \n    for row in doc.items:\n        total_milk += row.qty\n        # total_morning_milk += row.morning\n        # total_evening_milk += row.evening\n\n    doc.custom_total_milk = total_milk\n    # doc.total_morning_milk = total_morning_milk\n    # doc.total_evening_milk = total_evening_milk\n",
+  "script_type": "DocType Event"
+ }
+]
