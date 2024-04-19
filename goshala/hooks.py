@@ -30,10 +30,10 @@ app_license = "mit"
 # include js in doctype views
 doctype_js = {
     "Stock Entry" : "public/js/stock_entry.js",
-    # "Sales Invoice" : "public/js/sales_invoice.js"
+    "Sales Invoice" : "public/js/sales_invoice.js"
     }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {"Sales Invoice" : "public/js/sales_invoice_listview.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -136,7 +136,13 @@ doctype_js = {
 
 # Scheduled Tasks
 # ---------------
-
+scheduler_events = {
+    "generate_leave_allocation": {
+       "00 00 * * *": [
+            "goshala.goshala.doctype.api.change_go_type"
+        ]
+    }
+}
 # scheduler_events = {
 # 	"all": [
 # 		"goshala.tasks.all"
@@ -249,7 +255,7 @@ fixtures =[
         ]
     ]},
       
-              {"dt":"Print Format","filters":[
+            {"dt":"Print Format","filters":[
         [
             "module","in",[
                "Goshala"

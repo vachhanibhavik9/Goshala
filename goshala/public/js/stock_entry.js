@@ -83,8 +83,8 @@ function fetch_customer_list(frm) {
                     row.custom_pickup = cus.pick_up;
                     row.custom_delivery_man = cus.delivery_man;
                     row.custom_pickup_counter = cus.pickup_counter;
-                    row.custom_morning_qty = parseFloat(cus.morning_qty)? parseFloat(cus.morning_qty):0;
-                    row.custom_evening_qty = parseFloat(cus.evening_qty)? parseFloat(cus.evening_qty):0; 
+                    row.custom_morning_qty = cus.morning_qty;
+                    row.custom_evening_qty = cus.evening_qty; 
                     row.qty = row.custom_morning_qty + row.custom_evening_qty; 
                 });
 
