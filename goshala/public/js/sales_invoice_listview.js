@@ -28,31 +28,64 @@ frappe.listview_settings["Sales Invoice"] = {
             );
 		});
 	},
-	
-	
 };
 
-function fetch_stock_entry_data(month, year) {
-    frappe.call({
-        method: 'goshala.goshala.doctype.go_master.go_master.fetch_stock_entry_data',
-        args: {
-            month: month,
-            year: year
-        },
-        callback: function(r) {
-            if (r.message) {
+// function fetch_stock_entry_data(month, year) {
+//     frappe.call({
+//         method: 'goshala.goshala.doctype.go_master.go_master.fetch_stock_entry_data',
+//         args: {
+//             month: month,
+//             year: year
+//         },
+//         callback: function(r) {
+//             if (r.message) {
                 
-                // Iterate through the fetched data and create Sales Invoices
-                r.message.forEach(function(data) {
-                    create_sales_invoice(data);
-                });
+//                 // Iterate through the fetched data and create Sales Invoices
+//                 r.message.forEach(function(data) {
+//                     create_sales_invoice(data);
+//                 });
 
-                // Show a message
-                // frappe.msgprint('Sales Invoices Created Successfully!');
-            }
+//                 // Show a message
+//                 // frappe.msgprint('Sales Invoices Created Successfully!');
+//             }
+//         }
+//     });
+// }
+
+
+function fetch_stock_entry_data(month, year) {
+    // Use frappe.confirm to show a confirmation popup
+    frappe.confirm(
+        'Are you sure you want to create sales invoices for the specified month and year?',
+        function() {
+            // If the user clicks "Yes" on the confirmation dialog
+            frappe.call({
+                method: 'goshala.goshala.doctype.go_master.go_master.fetch_stock_entry_data',
+                args: {
+                    month: month,
+                    year: year
+                },
+                callback: function(r) {
+                    if (r.message) {
+                        // Iterate through the fetched data and create Sales Invoices
+                        r.message.forEach(function(data) {
+                            create_sales_invoice(data);
+                        });
+
+                        // Show a message indicating successful creation
+                        frappe.msgprint('Sales Invoices Creating');
+                    }
+                }
+            });
+        },
+        function() {
+            // If the user clicks "No" on the confirmation dialog
+            frappe.msgprint('Operation cancelled by the user.');
         }
-    });
+    );
 }
+
+
 
 function create_sales_invoice(data) {
     frappe.model.with_doctype('Sales Invoice', function() {
@@ -77,8 +110,8 @@ function create_sales_invoice(data) {
 
         // Save the Sales Invoice
         frappe.db.insert(new_si).then(function(doc) {
-            frappe.model.sync(doc);
-            frappe.set_route('Form', 'Sales Invoice', doc.name);
+            // frappe.model.sync(doc);
+            // frappe.set_route('Form', 'Sales Invoice', doc.name);
         });
     });
 }
