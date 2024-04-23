@@ -1,6 +1,7 @@
 import frappe
 import datetime
 from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
 @frappe.whitelist(allow_guest=True)
 def change_go_type():
@@ -18,3 +19,121 @@ def change_go_type():
             frappe.db.set_value('Go Master', entry['name'], 'current_type', 'Dujani')
             frappe.db.commit()
        
+       
+@frappe.whitelist()
+def fetch_go_master_list():
+    # Fetch data from the Go Master doctype
+    go_master_list = frappe.get_all('Go Master', filters={"current_type":"Dujani"}, fields=['name'])
+    return [go.name for go in go_master_list]
+
+@frappe.whitelist()
+def fetch_customer_list():
+    # Fetch data from the Customer doctype including 'morning_qty' field
+    customer_list = frappe.get_all('Customer', filters={}, fields=['name','custom_morning_qty','custom_evening_qty','custom_pick_up','custom_delivery_man','custom_pickup_counter'])
+    return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty':cus.custom_evening_qty, 'pick_up':cus.custom_pick_up, 'delivery_man':cus.custom_delivery_man, 'pickup_counter':cus.custom_pickup_counter} for cus in customer_list]
+
+
+@frappe.whitelist()
+def fetch_stock_entry_data(month, year):
+    # Convert month and year to integers if they are not already
+    month = int(month)
+    year = int(year)
+
+    # Use zero-padding for the month to format it properly
+    formatted_month = f'{month:02d}'
+    
+    # Construct the query to filter data based on the provided month and year
+    sql_query = f"""   
+        SELECT 
+            DATE_FORMAT(se.posting_date, '%m-%Y') AS month_year,
+            sed.custom_customer_name,
+            SUM(sed.custom_morning_qty) AS total_morning_qty,
+            SUM(sed.custom_evening_qty) AS total_evening_qty
+        FROM 
+            `tabStock Entry` AS se
+        JOIN 
+            `tabStock Entry Detail` AS sed ON se.name = sed.parent
+        WHERE 
+            se.stock_entry_type = 'Milk Sales'
+            AND DATE_FORMAT(se.posting_date, '%Y-%m') = '{year}-{formatted_month}'
+        GROUP BY 
+            month_year, sed.custom_customer_name
+    """
+    
+    # Fetch the data
+    data = frappe.db.sql(sql_query, as_dict=True)
+    
+    # Iterate through the fetched data and create Sales Invoices
+    for entry in data:
+        create_sales_invoice(entry)
+    
+    # Return a success message
+    return "Sales Invoices created successfully"
+
+
+
+def create_sales_invoice(data):
+
+    # Convert the custom_month field value from MM-YYYY format to month-YYYY format
+    month_year = data['month_year']
+    date_obj = datetime.strptime(month_year, '%m-%Y')  # Parse the date
+    formatted_month_year = date_obj.strftime('%B-%Y')  # Convert to month-YYYY format
+
+    doc_name = frappe.db.get_value("Dynamic Link",{"link_doctype":"Customer","link_name":data['custom_customer_name'],"parenttype":"Contact"},"parent")
+
+    mo_no = frappe.db.get_value("Contact",doc_name,"mobile_no")
+    
+    # Create the Sales Invoice document
+    si = frappe.get_doc({
+        "doctype": "Sales Invoice",
+        "customer": data['custom_customer_name'],
+        "custom_contact_no": mo_no,
+        "posting_date": frappe.utils.nowdate(),
+        "items": [{
+            "item_code": "Milk",
+            "item_name": "Milk",
+            "custom_month": formatted_month_year,  # Use the formatted month-YYYY format
+            "custom_morning_qty": data['total_morning_qty'],
+            "custom_evening_qty": data['total_evening_qty'],
+            "qty": data['total_morning_qty'] + data['total_evening_qty']
+        }]
+    })
+    
+    # Save the Sales Invoice
+    si.insert()
+
+
+
+# @frappe.whitelist()
+# def fetch_stock_entry_data(month, year):
+#     # Convert month and year to integers if they are not already
+#     month = int(month)
+#     year = int(year)
+
+#     # Use zero-padding for the month to format it properly
+#     formatted_month = f'{month:02d}'
+    
+#     # Construct the query to filter data based on the provided month and year
+#     sql_query = f"""   
+#         SELECT 
+#             DATE_FORMAT(se.posting_date, '%m-%Y') AS month_year,
+#             sed.custom_customer_name,
+#             SUM(sed.custom_morning_qty) AS total_morning_qty,
+#             SUM(sed.custom_evening_qty) AS total_evening_qty
+#         FROM 
+#             `tabStock Entry` AS se
+#         JOIN 
+#             `tabStock Entry Detail` AS sed ON se.name = sed.parent
+#         WHERE 
+#             se.stock_entry_type = 'Milk Sales'
+#             AND DATE_FORMAT(se.posting_date, '%Y-%m') = '{year}-{formatted_month}'
+#         GROUP BY 
+#             month_year, sed.custom_customer_name
+#     """
+    
+#     # Fetch the data
+#     data = frappe.db.sql(sql_query, as_dict=True)
+    
+#     # Return the data
+#     return data
+
