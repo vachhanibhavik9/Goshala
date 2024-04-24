@@ -10,6 +10,18 @@ frappe.ui.form.on('Stock Entry Detail', {
 
 });
 
+// frappe.ui.form.on('Stock Entry', {
+//     stock_entry_type: function(frm) {
+//         if (frm.doc.stock_entry_type == 'Milk Production') {
+//             // Set the default target warehouse for Milk Production
+//             frm.set_value('target_warehouse', 'Milk Production - SVG');
+//         } else if (frm.doc.stock_entry_type == 'Milk Sales') {
+//             // Set the default source warehouse for Milk Sales
+//             frm.set_value('source_warehouse', 'Milk Production - SVG');
+//         }
+//     }
+// });
+
 
 // Set Morning Total Qty, Evening Qty and Total Qty
 frappe.ui.form.on('Stock Entry', {
@@ -23,6 +35,8 @@ frappe.ui.form.on('Stock Entry', {
     stock_entry_type(frm) {
         if (frm.doc.stock_entry_type === 'Milk Production') {
             frm.clear_custom_buttons();
+            // Set the default target warehouse for Milk Production
+            frm.set_value('to_warehouse', 'Milk Production - SVG');
             frm.add_custom_button(__('Get Go'), function () {
                 fetchGoMasterList(frm);
                 fetchGoMasterListForFiltering(frm);
@@ -31,6 +45,8 @@ frappe.ui.form.on('Stock Entry', {
 
         if (frm.doc.stock_entry_type === 'Milk Sales') {
             frm.clear_custom_buttons();
+            // Set the default source warehouse for Milk Sales
+            frm.set_value('from_warehouse', 'Milk Production - SVG');
             frm.add_custom_button(__('Get Customer'), function () {
                 fetch_customer_list(frm);
             });
@@ -43,13 +59,21 @@ frappe.ui.form.on('Stock Entry', {
         get_fields(frm);
     },
 
+    before_submit(frm) {
+        get_fields(frm);
+    },
+
     on_submit(frm) {
+        get_fields(frm);
+    },
+
+    refresh(frm) {
         get_fields(frm);
     },
 
     setup(frm) {
         default_fields(frm);
-    }
+    },
 
 });
 
@@ -96,6 +120,7 @@ function setTotalEveningMilk(doc) {
 
 
 // Get Go from Go Master where current type is dujani
+
 // frappe.ui.form.on('Stock Entry', {
 //     stock_entry_type(frm) {
 //         if (frm.doc.stock_entry_type === 'Milk Production') {
@@ -121,6 +146,8 @@ function fetchGoMasterList(frm) {
                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
                     row.custom_go_name = go;
                     row.t_warehouse = "Milk Production - SVG";
+                    row.item_code = "Milk";
+                    row.uom = "Litre";
                     // Set other fields as needed
                 });
 
@@ -179,6 +206,8 @@ function fetch_customer_list(frm) {
                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
                     row.custom_customer_name = cus.name;
                     row.s_warehouse = "Milk Production - SVG";
+                    row.item_code = "Milk";
+                    row.uom = "Litre";
                     row.custom_pickup = cus.pick_up;
                     row.custom_delivery_man = cus.delivery_man;
                     row.custom_pickup_counter = cus.pickup_counter;
@@ -230,6 +259,7 @@ function get_fields(frm) {
             frm.fields_dict.items.grid.reset_grid();
         });
     }
+
     else if (frm.doc.stock_entry_type === 'Milk Production') {
         fields = {
             'Stock Entry Detail':
@@ -246,13 +276,16 @@ function get_fields(frm) {
             frappe.model.user_settings[frm.doctype] = r.message || r;
             frm.fields_dict.items.grid.reset_grid();
         });
-    } else if (frm.doc.stock_entry_type === 'In-House Consumption') {
+    }
+
+    else if (frm.doc.stock_entry_type === 'In-House Consumption') {
         fields = {
             'Stock Entry Detail':
                 [
-                    { fieldname: 's_warehouse', columns: 4 },
-                    { fieldname: 'custom_in_house_consumption', columns: 3 },
-                    { fieldname: 'qty', columns: 3 },
+                    { fieldname: 'item_code', columns: 3 },
+                    { fieldname: 's_warehouse', columns: 3 },
+                    { fieldname: 'custom_in_house_consumption', columns: 2 },
+                    { fieldname: 'qty', columns: 2 },
                 ]
         }
         frappe.model.user_settings.save(frm.doctype, "GridView", fields).then((r) => {
@@ -260,7 +293,26 @@ function get_fields(frm) {
             frm.fields_dict.items.grid.reset_grid();
         });
 
-    } else {
+    }
+
+    else if (frm.doc.stock_entry_type === 'Manufacture') {
+        fields = {
+            'Stock Entry Detail':
+                [
+                    { fieldname: 'item_code', columns: 2 },
+                    { fieldname: 's_warehouse', columns: 3 },
+                    { fieldname: 't_warehouse', columns: 3 },
+                    { fieldname: 'qty', columns: 2 },
+                ]
+        }
+        frappe.model.user_settings.save(frm.doctype, "GridView", fields).then((r) => {
+            frappe.model.user_settings[frm.doctype] = r.message || r;
+            frm.fields_dict.items.grid.reset_grid();
+        });
+
+    }
+
+    else {
         fields = {
             'Stock Entry Detail':
                 [
