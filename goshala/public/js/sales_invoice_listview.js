@@ -8,7 +8,7 @@ frappe.listview_settings["Sales Invoice"] = {
                         fieldname: 'month',
                         fieldtype: 'Select',
                         reqd: true,
-                        options: [
+                        options: [ 
                             { label: 'January', value: 1 },
                             { label: 'February', value: 2 },
                             { label: 'March', value: 3 },
@@ -37,36 +37,13 @@ frappe.listview_settings["Sales Invoice"] = {
                 function (values) {
                     // Call fetch_stock_entry_data method with the user-entered month and year
                     fetch_stock_entry_data(values.month, values.year);
-                    console.log(values.month,values.year)
+        
                 },
                 'Select Month and Year'
             );
         });
     },
 };
-
-
-// function fetch_stock_entry_data(month, year) {
-//     frappe.call({
-//         method: 'goshala.goshala.doctype.go_master.go_master.fetch_stock_entry_data',
-//         args: {
-//             month: month,
-//             year: year
-//         },
-//         callback: function(r) {
-//             if (r.message) {
-
-//                 // Iterate through the fetched data and create Sales Invoices
-//                 r.message.forEach(function(data) {
-//                     create_sales_invoice(data);
-//                 });
-
-//                 // Show a message
-//                 // frappe.msgprint('Sales Invoices Created Successfully!');
-//             }
-//         }
-//     });
-// }
 
 
 function fetch_stock_entry_data(month, year) {

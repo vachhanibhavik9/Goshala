@@ -10,17 +10,7 @@ frappe.ui.form.on('Stock Entry Detail', {
 
 });
 
-// frappe.ui.form.on('Stock Entry', {
-//     stock_entry_type: function(frm) {
-//         if (frm.doc.stock_entry_type == 'Milk Production') {
-//             // Set the default target warehouse for Milk Production
-//             frm.set_value('target_warehouse', 'Milk Production - SVG');
-//         } else if (frm.doc.stock_entry_type == 'Milk Sales') {
-//             // Set the default source warehouse for Milk Sales
-//             frm.set_value('source_warehouse', 'Milk Production - SVG');
-//         }
-//     }
-// });
+
 
 
 // Set Morning Total Qty, Evening Qty and Total Qty
@@ -121,17 +111,6 @@ function setTotalEveningMilk(doc) {
 
 // Get Go from Go Master where current type is dujani
 
-// frappe.ui.form.on('Stock Entry', {
-//     stock_entry_type(frm) {
-//         if (frm.doc.stock_entry_type === 'Milk Production') {
-//             frm.add_custom_button(__('Get Go'), function () {
-//                 fetchGoMasterList(frm);
-//                 fetchGoMasterListForFiltering(frm);
-//             });
-//         }
-//     }
-// });
-
 function fetchGoMasterList(frm) {
     // Make an AJAX call to fetch data from the Go Master doctype
     frappe.call({
@@ -182,16 +161,6 @@ function fetchGoMasterListForFiltering(frm) {
 
 // Get Customer from Customer where Customer is enabled
 
-// frappe.ui.form.on('Stock Entry', {
-//     stock_entry_type(frm) {
-//         if (frm.doc.stock_entry_type === 'Milk Sales') {
-//             frm.add_custom_button(__('Get Customer'), function () {
-//                 fetch_customer_list(frm);
-//             });
-//         }
-//     }
-// });
-
 function fetch_customer_list(frm) {
     // Make an AJAX call to fetch data from the Go Master doctype
     frappe.call({
@@ -223,22 +192,7 @@ function fetch_customer_list(frm) {
     });
 }
 
-
-// frappe.ui.form.on('Stock Entry', {
-//     stock_entry_type(frm) {
-//         get_fields(frm);
-//     },
-//     after_save(frm) {
-//         get_fields(frm);
-//     },
-//     on_submit(frm) {
-//         get_fields(frm);
-//     },
-//     setup(frm) {
-//         default_fields(frm);
-//     }
-
-// });
+// Set Field in Stock Entry Child Table list view when Different Stock entry Type 
 
 function get_fields(frm) {
     if (frm.doc.stock_entry_type === 'Milk Sales') {

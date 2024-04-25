@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:go_name",
- "creation": "2024-04-11 16:54:26.133410",
+ "creation": "2024-04-25 15:22:27.792552",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -38,9 +38,18 @@
   "weight",
   "photo",
   "column_break_deel",
-  "colour"
+  "colour",
+  "amended_from"
  ],
  "fields": [
+  {
+   "fieldname": "go_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Go Name",
+   "reqd": 1,
+   "unique": 1
+  },
   {
    "fieldname": "goshala_name",
    "fieldtype": "Link",
@@ -57,30 +66,21 @@
    "reqd": 1
   },
   {
-   "fieldname": "colour",
-   "fieldtype": "Color",
-   "label": "Colour"
+   "fieldname": "seva__death",
+   "fieldtype": "Select",
+   "label": "Seva / Death",
+   "options": "\nSeva\nDeath"
   },
   {
-   "fieldname": "mother_name",
-   "fieldtype": "Link",
-   "label": "Mother Name",
-   "options": "Go Master"
+   "depends_on": "eval:doc.seva__death==\"Seva\" || doc.seva__death==\"Death\"",
+   "fieldname": "sub_type",
+   "fieldtype": "Select",
+   "label": "Sub Type",
+   "options": "\nOld Age\nHealth Issue"
   },
   {
-   "fieldname": "father_name",
-   "fieldtype": "Data",
-   "label": "Father Name"
-  },
-  {
-   "fieldname": "weight",
-   "fieldtype": "Int",
-   "label": "Weight"
-  },
-  {
-   "fieldname": "doctor",
-   "fieldtype": "Data",
-   "label": "Doctor"
+   "fieldname": "column_break_ctzh",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "tag_number",
@@ -98,27 +98,23 @@
    "reqd": 1
   },
   {
-   "fieldname": "staff",
+   "fieldname": "current_type",
    "fieldtype": "Link",
-   "label": "Staff",
-   "options": "Employee"
+   "in_standard_filter": 1,
+   "label": "Current Type",
+   "options": "Go Type",
+   "reqd": 1
   },
   {
-   "fieldname": "photo",
-   "fieldtype": "Attach Image",
-   "label": "Photo"
+   "depends_on": "eval:doc.sub_type==\"Old Age\" || doc.sub_type==\"Health Issue\"",
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
   },
   {
-   "fieldname": "section_break_qerg",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_ctzh",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_deel",
-   "fieldtype": "Column Break"
+   "fieldname": "section_break_kyvv",
+   "fieldtype": "Section Break",
+   "label": "Go Details"
   },
   {
    "fieldname": "type",
@@ -128,25 +124,45 @@
    "reqd": 1
   },
   {
-   "fieldname": "section_break_kyvv",
-   "fieldtype": "Section Break",
-   "label": "Go Details"
+   "fieldname": "staff",
+   "fieldtype": "Link",
+   "label": "Staff",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Data",
+   "label": "Doctor"
   },
   {
    "fieldname": "column_break_tfzn",
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
-   "fieldname": "address",
-   "fieldtype": "Small Text",
-   "label": "Address"
+   "fieldname": "birth_date_time",
+   "fieldtype": "Datetime",
+   "label": "Birth Date Time"
+  },
+  {
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father Name"
+  },
+  {
+   "fieldname": "mother_name",
+   "fieldtype": "Link",
+   "label": "Mother Name",
+   "options": "Go Master"
+  },
+  {
+   "fieldname": "section_break_exxm",
+   "fieldtype": "Section Break"
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
-   "fieldname": "city",
+   "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "City"
+   "label": "Full Name"
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
@@ -156,22 +172,13 @@
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
-   "fieldname": "pincode",
-   "fieldtype": "Int",
-   "label": "Pincode"
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
   },
   {
-   "fieldname": "birth_date_time",
-   "fieldtype": "Datetime",
-   "label": "Birth Date Time"
-  },
-  {
-   "fieldname": "current_type",
-   "fieldtype": "Link",
-   "in_standard_filter": 1,
-   "label": "Current Type",
-   "options": "Go Type",
-   "reqd": 1
+   "fieldname": "column_break_dueb",
+   "fieldtype": "Column Break"
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\"",
@@ -180,18 +187,22 @@
    "label": "Purchase Date"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
-   "fieldname": "full_name",
-   "fieldtype": "Data",
-   "label": "Full Name"
+   "depends_on": "eval:doc.type==\"Donate\"",
+   "fieldname": "donate_date",
+   "fieldtype": "Date",
+   "label": "Donate Date"
   },
   {
-   "fieldname": "go_name",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "city",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Go Name",
-   "reqd": 1,
-   "unique": 1
+   "label": "City"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "fieldname": "pincode",
+   "fieldtype": "Int",
+   "label": "Pincode"
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
@@ -200,42 +211,42 @@
    "label": "Price"
   },
   {
-   "depends_on": "eval:doc.type==\"Donate\"",
-   "fieldname": "donate_date",
-   "fieldtype": "Date",
-   "label": "Donate Date"
-  },
-  {
-   "depends_on": "eval:doc.seva__death==\"Seva\" || doc.seva__death==\"Death\"",
-   "fieldname": "sub_type",
-   "fieldtype": "Select",
-   "label": "Sub Type",
-   "options": "\nOld Age\nHealth Issue"
-  },
-  {
-   "depends_on": "eval:doc.sub_type==\"Old Age\" || doc.sub_type==\"Health Issue\"",
-   "fieldname": "reason",
-   "fieldtype": "Small Text",
-   "label": "Reason"
-  },
-  {
-   "fieldname": "section_break_exxm",
+   "fieldname": "section_break_qerg",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "column_break_dueb",
+   "fieldname": "weight",
+   "fieldtype": "Int",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "column_break_deel",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "seva__death",
-   "fieldtype": "Select",
-   "label": "Seva / Death",
-   "options": "\nSeva\nDeath"
+   "fieldname": "colour",
+   "fieldtype": "Color",
+   "label": "Colour"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Go Master",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 15:27:36.246786",
+ "modified": "2024-04-25 15:26:13.507617",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
