@@ -20,10 +20,12 @@
   "type",
   "staff",
   "doctor",
+  "weight",
   "column_break_tfzn",
   "birth_date_time",
   "father_name",
   "mother_name",
+  "colour",
   "section_break_exxm",
   "full_name",
   "mobile_no",
@@ -34,11 +36,20 @@
   "city",
   "pincode",
   "price",
+  "transfer__donate_details_section",
+  "transfer_donate",
+  "allocate_date",
+  "contact_person_name",
+  "contact_no",
+  "donate_address",
+  "column_break_hdob",
+  "title",
+  "donate_date_time",
+  "allocate_goshala",
+  "remarks",
   "section_break_qerg",
-  "weight",
   "photo",
   "column_break_deel",
-  "colour",
   "amended_from"
  ],
  "fields": [
@@ -242,11 +253,76 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "transfer__donate_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transfer / Donate Details"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\"",
+   "fieldname": "allocate_date",
+   "fieldtype": "Datetime",
+   "label": "Allocate Date Time"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\" || doc.transfer_donate==\"Donate\"",
+   "fieldname": "contact_person_name",
+   "fieldtype": "Data",
+   "label": "Contact Person Name"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\" || doc.transfer_donate==\"Donate\"",
+   "fieldname": "contact_no",
+   "fieldtype": "Int",
+   "label": "Contact No"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\" || doc.transfer_donate==\"Donate\"",
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_hdob",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\"",
+   "fieldname": "allocate_goshala",
+   "fieldtype": "Link",
+   "label": "Allocate Goshala",
+   "options": "Branch"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Transfer\" || doc.transfer_donate==\"Donate\"",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "transfer_donate",
+   "fieldtype": "Select",
+   "label": "Transfer / Donate",
+   "options": "\nTransfer\nDonate"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Donate\"",
+   "fieldname": "donate_date_time",
+   "fieldtype": "Datetime",
+   "label": "Donate Date Time"
+  },
+  {
+   "depends_on": "eval:doc.transfer_donate==\"Donate\"",
+   "fieldname": "donate_address",
+   "fieldtype": "Small Text",
+   "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-25 15:26:13.507617",
+ "modified": "2024-04-26 13:30:52.776739",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
