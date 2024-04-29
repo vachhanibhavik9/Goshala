@@ -1,0 +1,66 @@
+{
+ "cards": [
+  {
+   "card": "Total Go"
+  },
+  {
+   "card": "Total Dujani Go"
+  },
+  {
+   "card": "Total Parkh Go"
+  },
+  {
+   "card": "Total Vachhardi"
+  },
+  {
+   "card": "Total Vachhardo"
+  },
+  {
+   "card": "Total Bullock"
+  },
+  {
+   "card": "Total Nandi"
+  },
+  {
+   "card": "Total Hodaki"
+  },
+  {
+   "card": "Total Nandi For Donation"
+  },
+  {
+   "card": "Weekly Birth (Vachhardi)"
+  },
+  {
+   "card": "Weekly Birth (Vachhardo)"
+  },
+  {
+   "card": "Monthly Birth (Vachhardi)"
+  },
+  {
+   "card": "Monthly Birth (Vachhardo)"
+  },
+  {
+   "card": "Yearly Birth (Vachhardi)"
+  },
+  {
+   "card": "Yearly Birth (Vachhardo)"
+  }
+ ],
+ "charts": [
+  {
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-04-29 15:28:44.937545",
+ "dashboard_name": "Goshala",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2024-04-29 18:16:18.450978",
+ "modified_by": "Administrator",
+ "module": "Goshala",
+ "name": "Goshala",
+ "owner": "Administrator"
+}

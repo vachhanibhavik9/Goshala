@@ -25,25 +25,32 @@ def fetch_go_master_list():
     # Fetch data from the Go Master doctype
     go_master_list = frappe.get_all('Go Master', filters={"current_type":"Dujani"}, fields=['name'])
     return [go.name for go in go_master_list]
+    
 
 @frappe.whitelist()
 def fetch_customer_list():
     # Fetch data from the Customer doctype including 'morning_qty' field
-    customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name','custom_morning_qty','custom_evening_qty','custom_pick_up','custom_delivery_man','custom_pickup_counter'])
-    return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty':cus.custom_evening_qty, 'pick_up':cus.custom_pick_up, 'delivery_man':cus.custom_delivery_man, 'pickup_counter':cus.custom_pickup_counter} for cus in customer_list]
+    customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name', 'custom_morning_qty', 'custom_evening_qty', 'custom_pick_up', 'custom_delivery_man', 'custom_pickup_counter'])
+
+    # Sort customers based on their delivery method
+    # Customers with self-pickup first, then home delivery
+    sorted_customer_list = sorted(customer_list, key=lambda cus: cus.custom_pick_up, reverse=True)
+
+    # Return sorted list of customers
+    return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
 
 
 @frappe.whitelist()
-def fetch_stock_entry_data(month, year):
+def fetch_stock_entry_data(month, year, customer=None):
     # Convert month and year to integers if they are not already
     month = int(month)
     year = int(year)
-
+    
     # Use zero-padding for the month to format it properly
     formatted_month = f'{month:02d}'
     
-    # Construct the query to filter data based on the provided month and year
-    sql_query = f"""   
+    # Construct the base query without customer filter
+    base_sql_query = f"""   
         SELECT 
             DATE_FORMAT(se.posting_date, '%m-%Y') AS month_year,
             sed.custom_customer_name,
@@ -56,9 +63,13 @@ def fetch_stock_entry_data(month, year):
         WHERE 
             se.stock_entry_type = 'Milk Sales'
             AND DATE_FORMAT(se.posting_date, '%Y-%m') = '{year}-{formatted_month}'
-        GROUP BY 
-            month_year, sed.custom_customer_name
     """
+    
+    # If customer is provided, add customer filter to the query
+    if customer:
+        sql_query = base_sql_query + f" AND sed.custom_customer_name = '{customer}'"
+    else:
+        sql_query = base_sql_query + " GROUP BY month_year, sed.custom_customer_name"
     
     # Fetch the data
     data = frappe.db.sql(sql_query, as_dict=True)
@@ -69,6 +80,7 @@ def fetch_stock_entry_data(month, year):
     
     # Return a success message
     return "Sales Invoices created successfully"
+
 
 
 

@@ -32,31 +32,39 @@ frappe.listview_settings["Sales Invoice"] = {
                         reqd: true,
                         default: new Date().getFullYear(), // Default to the current year
                         description: 'Enter the year'
+                    },
+                    {
+                        label: 'Customer',
+                        fieldname: 'customer',
+                        fieldtype: 'Link',
+                        options: 'Customer',
+                        description: 'Select the Customer'
                     }
                 ],
                 function (values) {
-                    // Call fetch_stock_entry_data method with the user-entered month and year
-                    fetch_stock_entry_data(values.month, values.year);
+                    // Call fetch_stock_entry_data method with the user-entered month, year, and customer
+                    fetch_stock_entry_data(values.month, values.year, values.customer);
         
                 },
-                'Select Month and Year'
+                'Select Month, Year, and Customer'
             );
         });
     },
 };
 
 
-function fetch_stock_entry_data(month, year) {
+function fetch_stock_entry_data(month, year, customer) {
     // Use frappe.confirm to show a confirmation popup
     frappe.confirm(
-        'Are you sure you want to create sales invoices for the specified month and year?',
+        'Are you sure you want to create sales invoices for the specified month, year, and customer?',
         function () {
             // If the user clicks "Yes" on the confirmation dialog
             frappe.call({
                 method: 'goshala.goshala.doctype.api.fetch_stock_entry_data',
                 args: {
                     month: month,
-                    year: year
+                    year: year,
+                    customer: customer
                 },
                 freeze: true,
                 freeze_message: __("Creating Sales Invoices")
@@ -68,6 +76,8 @@ function fetch_stock_entry_data(month, year) {
         }
     );
 }
+
+
 
 
 
