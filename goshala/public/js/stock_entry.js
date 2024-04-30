@@ -200,9 +200,9 @@ function get_fields(frm) {
             'Stock Entry Detail':
                 [
                     { fieldname: 'custom_customer_name', columns: 2 },
-                    { fieldname: 's_warehouse', columns: 2 },
-                    { fieldname: 'item_code', columns: 1 },
                     { fieldname: 'custom_pickup', columns: 2 },
+                    { fieldname: 'custom_pickup_counter', columns: 2 },
+                    { fieldname: 'custom_delivery_man', columns: 1 },
                     { fieldname: 'custom_morning_qty', columns: 1 },
                     { fieldname: 'custom_evening_qty', columns: 1 },
                     { fieldname: 'qty', columns: 1 },

@@ -141,6 +141,7 @@
    "options": "Employee"
   },
   {
+   "depends_on": "eval:doc.type==\"Birth\" || doc.type==\"Donate\"",
    "fieldname": "doctor",
    "fieldtype": "Data",
    "label": "Doctor"
@@ -216,7 +217,7 @@
    "label": "Pincode"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" ",
    "fieldname": "price",
    "fieldtype": "Int",
    "label": "Price"
@@ -241,7 +242,7 @@
   },
   {
    "fieldname": "colour",
-   "fieldtype": "Color",
+   "fieldtype": "Data",
    "label": "Colour"
   },
   {
@@ -322,7 +323,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-26 13:30:52.776739",
+ "modified": "2024-04-30 12:48:03.664615",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
