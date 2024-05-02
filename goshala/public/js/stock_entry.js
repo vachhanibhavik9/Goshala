@@ -180,7 +180,10 @@ function fetch_customer_list(frm) {
                     row.custom_pickup = cus.pick_up;
                     row.custom_delivery_man = cus.delivery_man;
                     row.custom_pickup_counter = cus.pickup_counter;
-                    row.custom_morning_qty = cus.morning_qty;
+                    
+                    var morning_qty_float = parseFloat(cus.morning_qty);
+                    row.custom_morning_qty = morning_qty_float;  
+                    // row.custom_morning_qty = cus.morning_qty;
                     row.custom_evening_qty = cus.evening_qty;
                     row.qty = row.custom_morning_qty + row.custom_evening_qty;
                 });
