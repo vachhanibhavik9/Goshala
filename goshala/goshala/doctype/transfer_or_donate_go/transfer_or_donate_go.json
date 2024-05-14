@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:go_name",
+ "creation": "2024-05-14 15:55:26.864014",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transfer__donate",
+  "transfer_date_time",
+  "donate_date_time",
+  "column_break_zgrl",
+  "from_goshala",
+  "to_goshala",
+  "section_break_wrce",
+  "contact_person_name",
+  "remarks",
+  "column_break_spyo",
+  "contact_no",
+  "address",
+  "section_break_kfrc",
+  "go_name",
+  "gender",
+  "type",
+  "weight",
+  "staff",
+  "colour",
+  "column_break_cork",
+  "tag_number",
+  "current_type",
+  "birth_date_time",
+  "mother_name",
+  "father_name",
+  "photo"
+ ],
+ "fields": [
+  {
+   "fieldname": "go_name",
+   "fieldtype": "Data",
+   "label": "Go Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "current_type",
+   "fieldtype": "Link",
+   "label": "Current Type",
+   "options": "Go Type"
+  },
+  {
+   "fieldname": "transfer__donate",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Transfer / Donate ",
+   "options": "\nTransfer\nDonate"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Transfer\";",
+   "fieldname": "transfer_date_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Transfer Date Time"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Donate\";",
+   "fieldname": "donate_date_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Donate Date time"
+  },
+  {
+   "fieldname": "from_goshala",
+   "fieldtype": "Link",
+   "label": "From Goshala",
+   "options": "Branch"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Transfer\";",
+   "fieldname": "to_goshala",
+   "fieldtype": "Link",
+   "label": "To Goshala",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "column_break_zgrl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Old Entry\nBirth\nPurchase\nDonate"
+  },
+  {
+   "fieldname": "birth_date_time",
+   "fieldtype": "Datetime",
+   "label": "Birth Date Time"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "colour",
+   "fieldtype": "Data",
+   "label": "Colour"
+  },
+  {
+   "fieldname": "mother_name",
+   "fieldtype": "Data",
+   "label": "Mother Name"
+  },
+  {
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father Name"
+  },
+  {
+   "fieldname": "staff",
+   "fieldtype": "Link",
+   "label": "Staff",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_kfrc",
+   "fieldtype": "Section Break",
+   "label": "Go Details"
+  },
+  {
+   "fieldname": "column_break_cork",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "section_break_wrce",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contact_person_name",
+   "fieldtype": "Data",
+   "label": "Contact Person Name"
+  },
+  {
+   "fieldname": "contact_no",
+   "fieldtype": "Int",
+   "label": "Contact No"
+  },
+  {
+   "fieldname": "column_break_spyo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Donate\";",
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-14 18:58:26.991537",
+ "modified_by": "Administrator",
+ "module": "Goshala",
+ "name": "Transfer or Donate Go",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
