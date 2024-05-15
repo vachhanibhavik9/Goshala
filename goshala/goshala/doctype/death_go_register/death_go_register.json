@@ -1,0 +1,213 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:go_name",
+ "creation": "2024-05-15 11:27:33.749416",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "reason",
+  "death_date",
+  "column_break_rrqc",
+  "remarks",
+  "section_break_kfrc",
+  "go_name",
+  "gender",
+  "type",
+  "weight",
+  "staff",
+  "colour",
+  "column_break_cork",
+  "tag_number",
+  "current_type",
+  "birth_date_time",
+  "mother_name",
+  "father_name",
+  "photo",
+  "transfer_or_donate_go_details_section",
+  "full_name",
+  "mobile_no",
+  "purchase__donate_address",
+  "column_break_hsyb",
+  "purchase__donate_date",
+  "city",
+  "pincode",
+  "price"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_kfrc",
+   "fieldtype": "Section Break",
+   "label": "Go Details"
+  },
+  {
+   "fieldname": "go_name",
+   "fieldtype": "Data",
+   "label": "Go Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Old Entry\nBirth\nPurchase\nDonation"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "staff",
+   "fieldtype": "Link",
+   "label": "Staff",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "colour",
+   "fieldtype": "Data",
+   "label": "Colour"
+  },
+  {
+   "fieldname": "column_break_cork",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "current_type",
+   "fieldtype": "Link",
+   "label": "Current Type",
+   "options": "Go Type"
+  },
+  {
+   "fieldname": "birth_date_time",
+   "fieldtype": "Datetime",
+   "label": "Birth Date Time"
+  },
+  {
+   "fieldname": "mother_name",
+   "fieldtype": "Data",
+   "label": "Mother Name"
+  },
+  {
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father Name"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\";",
+   "fieldname": "transfer_or_donate_go_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transfer or Donate Go Details"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Int",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "purchase__donate_address",
+   "fieldtype": "Small Text",
+   "label": "Purchase / Donate Address"
+  },
+  {
+   "fieldname": "column_break_hsyb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase__donate_date",
+   "fieldtype": "Date",
+   "label": "Purchase / Donate Date"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Int",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Select",
+   "label": "Title",
+   "options": "Death"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Select",
+   "label": "Reason",
+   "options": "\nOld Age\nHealth Issue"
+  },
+  {
+   "fieldname": "column_break_rrqc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "death_date",
+   "fieldtype": "Date",
+   "label": "Death Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-15 16:18:05.611054",
+ "modified_by": "Administrator",
+ "module": "Goshala",
+ "name": "Death Go Register",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

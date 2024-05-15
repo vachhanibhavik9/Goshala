@@ -10,7 +10,7 @@
   "go_name",
   "goshala_name",
   "date",
-  "seva__death",
+  "seva",
   "sub_type",
   "column_break_ctzh",
   "gender",
@@ -67,12 +67,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "seva__death",
-   "fieldtype": "Select",
-   "label": "Seva / Death",
-   "options": "\nSeva\nDeath"
-  },
-  {
    "depends_on": "eval:doc.seva__death==\"Seva\" || doc.seva__death==\"Death\"",
    "fieldname": "sub_type",
    "fieldtype": "Select",
@@ -121,7 +115,7 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Old Entry\nBirth\nPurchase\nDonate",
+   "options": "Old Entry\nBirth\nPurchase\nDonation",
    "reqd": 1
   },
   {
@@ -131,7 +125,7 @@
    "options": "Employee"
   },
   {
-   "depends_on": "eval:doc.type==\"Birth\" || doc.type==\"Donate\" || doc.type==\"Old Entry\"",
+   "depends_on": "eval:doc.type==\"Birth\" || doc.type==\"Old Entry\"",
    "fieldname": "doctor",
    "fieldtype": "Data",
    "label": "Doctor"
@@ -160,19 +154,19 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "full_name",
    "fieldtype": "Data",
    "label": "Full Name"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "mobile_no",
    "fieldtype": "Int",
    "label": "Mobile No"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "address",
    "fieldtype": "Small Text",
    "label": "Address"
@@ -188,19 +182,19 @@
    "label": "Purchase Date"
   },
   {
-   "depends_on": "eval:doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Donation\"",
    "fieldname": "donate_date",
    "fieldtype": "Date",
    "label": "Donate Date"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "city",
    "fieldtype": "Data",
    "label": "City"
   },
   {
-   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\"",
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "pincode",
    "fieldtype": "Int",
    "label": "Pincode"
@@ -250,11 +244,17 @@
    "fieldtype": "Select",
    "label": "Nandi Type",
    "options": "\nNandi For Donation\nOur Nandi"
+  },
+  {
+   "fieldname": "seva",
+   "fieldtype": "Select",
+   "label": "Seva ",
+   "options": "\nSeva"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-15 10:30:52.006113",
+ "modified": "2024-05-15 16:14:21.926968",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

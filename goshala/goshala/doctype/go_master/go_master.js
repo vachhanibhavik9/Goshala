@@ -55,5 +55,3 @@ frappe.ui.form.on('Go Master', {
         });
     }
 });
-
-
