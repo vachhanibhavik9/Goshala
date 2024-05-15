@@ -217,7 +217,7 @@
   },
   {
    "fieldname": "weight",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Weight"
   },
   {
@@ -254,7 +254,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-14 18:02:58.609447",
+ "modified": "2024-05-15 10:30:52.006113",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

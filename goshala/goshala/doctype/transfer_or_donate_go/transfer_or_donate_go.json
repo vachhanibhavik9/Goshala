@@ -31,7 +31,16 @@
   "birth_date_time",
   "mother_name",
   "father_name",
-  "photo"
+  "photo",
+  "transfer_or_donate_go_details_section",
+  "full_name",
+  "mobile_no",
+  "purchase__donate_address",
+  "column_break_hsyb",
+  "purchase__donate_date",
+  "city",
+  "pincode",
+  "price"
  ],
  "fields": [
   {
@@ -176,11 +185,57 @@
    "fieldname": "address",
    "fieldtype": "Small Text",
    "label": "Address"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donate\";",
+   "fieldname": "transfer_or_donate_go_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transfer or Donate Go Details"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Int",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "purchase__donate_address",
+   "fieldtype": "Small Text",
+   "label": "Purchase / Donate Address"
+  },
+  {
+   "fieldname": "purchase__donate_date",
+   "fieldtype": "Date",
+   "label": "Purchase / Donate Date"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Int",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "column_break_hsyb",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-14 18:58:26.991537",
+ "modified": "2024-05-15 10:55:33.640808",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",
