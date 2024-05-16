@@ -19,13 +19,16 @@
   "weight",
   "staff",
   "colour",
+  "seva",
+  "reason_seva",
+  "photo",
   "column_break_cork",
   "tag_number",
   "current_type",
   "birth_date_time",
   "mother_name",
   "father_name",
-  "photo",
+  "remarks_seva",
   "transfer_or_donate_go_details_section",
   "full_name",
   "mobile_no",
@@ -183,11 +186,30 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "fieldname": "seva",
+   "fieldtype": "Select",
+   "label": "Seva",
+   "options": "\nSeva"
+  },
+  {
+   "depends_on": "eval:doc.seva==\"Seva\";",
+   "fieldname": "reason_seva",
+   "fieldtype": "Select",
+   "label": "Reason (Seva)",
+   "options": "\nOld Age\nHealth Issue"
+  },
+  {
+   "depends_on": "eval:doc.reason_seva==\"Old Age\" || doc.reason_seva==\"Health Issue\"",
+   "fieldname": "remarks_seva",
+   "fieldtype": "Small Text",
+   "label": "Remarks (Seva)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-15 16:18:05.611054",
+ "modified": "2024-05-16 10:58:58.429913",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Death Go Register",

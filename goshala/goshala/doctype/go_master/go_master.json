@@ -11,12 +11,12 @@
   "goshala_name",
   "date",
   "seva",
-  "sub_type",
+  "reason",
   "column_break_ctzh",
   "gender",
   "current_type",
   "nandi_type",
-  "reason",
+  "remarks",
   "section_break_kyvv",
   "type",
   "staff",
@@ -67,13 +67,6 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.seva__death==\"Seva\" || doc.seva__death==\"Death\"",
-   "fieldname": "sub_type",
-   "fieldtype": "Select",
-   "label": "Sub Type",
-   "options": "\nOld Age\nHealth Issue"
-  },
-  {
    "fieldname": "column_break_ctzh",
    "fieldtype": "Column Break"
   },
@@ -101,10 +94,11 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.sub_type==\"Old Age\" || doc.sub_type==\"Health Issue\"",
+   "depends_on": "eval:doc.seva==\"Seva\";",
    "fieldname": "reason",
-   "fieldtype": "Small Text",
-   "label": "Reason"
+   "fieldtype": "Select",
+   "label": "Reason",
+   "options": "\nOld Age\nHealth Issue"
   },
   {
    "fieldname": "section_break_kyvv",
@@ -250,11 +244,17 @@
    "fieldtype": "Select",
    "label": "Seva ",
    "options": "\nSeva"
+  },
+  {
+   "depends_on": "eval:doc.reason==\"Old Age\" || doc.reason==\"Health Issue\"",
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-15 16:14:21.926968",
+ "modified": "2024-05-16 10:46:28.959698",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
