@@ -31,6 +31,7 @@
   "column_break_cork",
   "tag_number",
   "current_type",
+  "nandi_type",
   "birth_date_time",
   "mother_name",
   "father_name",
@@ -254,11 +255,18 @@
    "fieldname": "remarks_seva",
    "fieldtype": "Small Text",
    "label": "Remarks (Seva)"
+  },
+  {
+   "depends_on": "eval:doc.current_type==\"Nandi\"",
+   "fieldname": "nandi_type",
+   "fieldtype": "Select",
+   "label": "Nandi Type",
+   "options": "\nNandi For Donation\nOur Nandi"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-16 10:54:32.628645",
+ "modified": "2024-05-20 16:54:13.302222",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",

@@ -23,7 +23,7 @@ def change_go_type():
 @frappe.whitelist()
 def fetch_go_master_list():
     # Fetch data from the Go Master doctype
-    go_master_list = frappe.get_all('Go Master', filters={"current_type":"Dujani"}, fields=['name'])
+    go_master_list = frappe.get_all('Go Master', filters={"goshala_name":"Shree Vallabh Goshala - Vadla", "current_type":"Dujani"}, fields=['name'])
     
     return [go.name for go in go_master_list]
     

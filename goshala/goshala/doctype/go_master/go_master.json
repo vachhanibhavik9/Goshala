@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:go_name",
+ "autoname": "format:{go_name}-{####}",
  "creation": "2024-04-25 15:22:27.792552",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -55,6 +55,7 @@
    "fieldname": "goshala_name",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Goshala Name",
    "options": "Branch",
    "reqd": 1
@@ -254,11 +255,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-16 10:46:28.959698",
+ "modified": "2024-05-20 17:16:56.609541",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
