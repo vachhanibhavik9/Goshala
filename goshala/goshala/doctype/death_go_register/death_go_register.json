@@ -9,9 +9,13 @@
  "field_order": [
   "title",
   "reason",
-  "death_date",
-  "column_break_rrqc",
   "remarks",
+  "column_break_rrqc",
+  "death_date",
+  "doctor_death",
+  "staff_death",
+  "death_image",
+  "death_register_image",
   "section_break_kfrc",
   "go_name",
   "gender",
@@ -27,6 +31,7 @@
   "current_type",
   "nandi_type",
   "birth_date_time",
+  "doctor",
   "mother_name",
   "father_name",
   "remarks_seva",
@@ -72,7 +77,7 @@
   {
    "fieldname": "staff",
    "fieldtype": "Link",
-   "label": "Staff",
+   "label": "Staff (Born)",
    "options": "Employee"
   },
   {
@@ -114,7 +119,7 @@
   {
    "fieldname": "photo",
    "fieldtype": "Attach Image",
-   "label": "Photo"
+   "label": "Photo (Born)"
   },
   {
    "collapsible": 1,
@@ -158,6 +163,7 @@
    "label": "Pincode"
   },
   {
+   "depends_on": "eval:doc.type==\"Purchase\";",
    "fieldname": "price",
    "fieldtype": "Currency",
    "label": "Price"
@@ -213,11 +219,37 @@
    "fieldtype": "Select",
    "label": "Nandi Type",
    "options": "\nNandi For Donation\nOur Nandi"
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Data",
+   "label": "Doctor (Born)"
+  },
+  {
+   "fieldname": "doctor_death",
+   "fieldtype": "Data",
+   "label": "Doctor (Death)"
+  },
+  {
+   "fieldname": "staff_death",
+   "fieldtype": "Link",
+   "label": "Staff (Death)",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "death_image",
+   "fieldtype": "Attach Image",
+   "label": "Death Image"
+  },
+  {
+   "fieldname": "death_register_image",
+   "fieldtype": "Attach Image",
+   "label": "Death Register Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-20 16:56:21.223582",
+ "modified": "2024-05-22 17:46:08.887402",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Death Go Register",

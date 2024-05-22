@@ -9,9 +9,12 @@
   "transfer__donate",
   "transfer_date_time",
   "donate_date_time",
+  "transfer_staff",
+  "donate_image",
   "column_break_zgrl",
   "from_goshala",
   "to_goshala",
+  "donate_staff",
   "section_break_wrce",
   "contact_person_name",
   "remarks",
@@ -33,6 +36,7 @@
   "current_type",
   "nandi_type",
   "birth_date_time",
+  "doctor",
   "mother_name",
   "father_name",
   "remarks_seva",
@@ -144,7 +148,7 @@
   {
    "fieldname": "staff",
    "fieldtype": "Link",
-   "label": "Staff",
+   "label": "Staff (Born)",
    "options": "Employee"
   },
   {
@@ -159,7 +163,7 @@
   {
    "fieldname": "photo",
    "fieldtype": "Attach Image",
-   "label": "Photo"
+   "label": "Photo (Born)"
   },
   {
    "fieldname": "section_break_wrce",
@@ -262,11 +266,36 @@
    "fieldtype": "Select",
    "label": "Nandi Type",
    "options": "\nNandi For Donation\nOur Nandi"
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Data",
+   "label": "Doctor (Born)"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Transfer\";",
+   "fieldname": "transfer_staff",
+   "fieldtype": "Link",
+   "label": "Transfer Staff",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Donate\";",
+   "fieldname": "donate_staff",
+   "fieldtype": "Link",
+   "label": "Donate Staff",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.transfer__donate==\"Donate\";",
+   "fieldname": "donate_image",
+   "fieldtype": "Attach Image",
+   "label": "Donate Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-20 16:54:13.302222",
+ "modified": "2024-05-22 17:38:05.662974",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",
