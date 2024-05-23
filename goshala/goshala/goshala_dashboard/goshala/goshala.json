@@ -26,24 +26,6 @@
   },
   {
    "card": "Total Nandi For Donation"
-  },
-  {
-   "card": "Weekly Birth (Vachhardi)"
-  },
-  {
-   "card": "Weekly Birth (Vachhardo)"
-  },
-  {
-   "card": "Monthly Birth (Vachhardi)"
-  },
-  {
-   "card": "Monthly Birth (Vachhardo)"
-  },
-  {
-   "card": "Yearly Birth (Vachhardi)"
-  },
-  {
-   "card": "Yearly Birth (Vachhardo)"
   }
  ],
  "charts": [
@@ -58,7 +40,7 @@
  "idx": 0,
  "is_default": 1,
  "is_standard": 1,
- "modified": "2024-04-29 18:16:18.450978",
+ "modified": "2024-05-23 18:16:31.345691",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Goshala",
