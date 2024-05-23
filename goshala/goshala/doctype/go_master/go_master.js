@@ -55,3 +55,27 @@ frappe.ui.form.on('Go Master', {
         });
     }
 });
+
+// set filter only active employees and doctors show
+
+frappe.ui.form.on('Go Master', {
+    onload: function(frm) {
+        // Filter for Staff field to show only active employees
+        frm.set_query('staff', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+
+        // Filter for Doctor field to show only active doctors
+        frm.set_query('doctor', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+    }
+});

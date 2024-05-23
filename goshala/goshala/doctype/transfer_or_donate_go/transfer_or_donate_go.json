@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:go_name",
  "creation": "2024-05-14 15:55:26.864014",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -54,8 +53,7 @@
   {
    "fieldname": "go_name",
    "fieldtype": "Data",
-   "label": "Go Name",
-   "unique": 1
+   "label": "Go Name"
   },
   {
    "fieldname": "tag_number",
@@ -269,8 +267,9 @@
   },
   {
    "fieldname": "doctor",
-   "fieldtype": "Data",
-   "label": "Doctor (Born)"
+   "fieldtype": "Link",
+   "label": "Doctor (Born)",
+   "options": "Doctor Master"
   },
   {
    "depends_on": "eval:doc.transfer__donate==\"Transfer\";",
@@ -295,11 +294,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-22 17:38:05.662974",
+ "modified": "2024-05-23 12:51:04.465162",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{go_name}-{####}",
  "creation": "2024-04-25 15:22:27.792552",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -48,8 +47,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Go Name",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "goshala_name",
@@ -122,8 +120,9 @@
   {
    "depends_on": "eval:doc.type==\"Birth\" || doc.type==\"Old Entry\"",
    "fieldname": "doctor",
-   "fieldtype": "Data",
-   "label": "Doctor (Born)"
+   "fieldtype": "Link",
+   "label": "Doctor (Born)",
+   "options": "Doctor Master"
   },
   {
    "fieldname": "column_break_tfzn",
@@ -255,11 +254,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-22 17:02:01.850622",
+ "modified": "2024-05-23 12:38:30.370525",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

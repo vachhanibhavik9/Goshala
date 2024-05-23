@@ -3,6 +3,8 @@ import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
+# Changes go type automatic after 7 months of born
+
 @frappe.whitelist(allow_guest=True)
 def change_go_type():
     today = datetime.date.today()
@@ -19,7 +21,8 @@ def change_go_type():
             frappe.db.set_value('Go Master', entry['name'], 'current_type', 'Dujani')
             frappe.db.commit()
        
-       
+# Fetch go master list in stock entry doctype where stock entry type is milk production
+
 @frappe.whitelist()
 def fetch_go_master_list():
     # Fetch data from the Go Master doctype
@@ -27,6 +30,7 @@ def fetch_go_master_list():
     
     return [go.name for go in go_master_list]
     
+# Fetch customer list in stock entry doctype where stock entry type is milk sales
 
 @frappe.whitelist()
 def fetch_customer_list():
@@ -40,6 +44,7 @@ def fetch_customer_list():
     # Return sorted list of customers
     return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
 
+# Fetch customer details month wise in when create sales invoice
 
 @frappe.whitelist()
 def fetch_stock_entry_data(month, year, customer=None):

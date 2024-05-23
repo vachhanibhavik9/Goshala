@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:go_name",
  "creation": "2024-05-15 11:27:33.749416",
  "default_view": "List",
  "doctype": "DocType",
@@ -54,8 +53,7 @@
   {
    "fieldname": "go_name",
    "fieldtype": "Data",
-   "label": "Go Name",
-   "unique": 1
+   "label": "Go Name"
   },
   {
    "fieldname": "gender",
@@ -222,13 +220,15 @@
   },
   {
    "fieldname": "doctor",
-   "fieldtype": "Data",
-   "label": "Doctor (Born)"
+   "fieldtype": "Link",
+   "label": "Doctor (Born)",
+   "options": "Doctor Master"
   },
   {
    "fieldname": "doctor_death",
-   "fieldtype": "Data",
-   "label": "Doctor (Death)"
+   "fieldtype": "Link",
+   "label": "Doctor (Death)",
+   "options": "Doctor Master"
   },
   {
    "fieldname": "staff_death",
@@ -249,11 +249,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-22 17:46:08.887402",
+ "modified": "2024-05-23 12:35:46.876774",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Death Go Register",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

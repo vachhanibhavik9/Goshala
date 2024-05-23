@@ -56,4 +56,44 @@ frappe.ui.form.on('Death Go Register', {
     }
 });
 
+// set filter only active employees and doctors show
 
+frappe.ui.form.on('Death Go Register', {
+    onload: function(frm) {
+        // Filter for Doctore (Death) field to show only active employees
+        frm.set_query('doctor_death', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+
+        // Filter for Staff(Death) field to show only active doctors
+        frm.set_query('staff_death', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+
+        // Filter for Staff (Born) field to show only active employees
+        frm.set_query('staff', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+
+        // Filter for Doctor (Born) field to show only active doctors
+        frm.set_query('doctor', function() {
+            return {
+                filters: {
+                    status: 'Active'
+                }
+            };
+        });
+    }
+});
