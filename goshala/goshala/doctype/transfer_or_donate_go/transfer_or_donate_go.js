@@ -97,3 +97,24 @@ frappe.ui.form.on('Transfer or Donate Go', {
         });
     }
 });
+
+// Delete go master entry when click on save button
+
+frappe.ui.form.on("Transfer or Donate Go", {
+    after_save: function(frm) {
+        // Call the server-side method to delete the Go Master document
+        frappe.call({
+            method: "goshala.goshala.doctype.api.delete_go_master_by_id",
+            args: {
+                doc_id: frm.doc.go_master_id // Pass the Go Master ID to be deleted
+            },
+            callback: function(r) {
+                if (r.message && r.message.status === "success") {
+                    frappe.msgprint(__("Go Master document has been deleted successfully."));
+                } else if (r.message && r.message.status === "error") {
+                    frappe.msgprint(__("Error: " + r.message.message));
+                }
+            }
+        });
+    }
+});

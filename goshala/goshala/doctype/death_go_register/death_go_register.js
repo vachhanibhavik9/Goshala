@@ -59,9 +59,9 @@ frappe.ui.form.on('Death Go Register', {
 // set filter only active employees and doctors show
 
 frappe.ui.form.on('Death Go Register', {
-    onload: function(frm) {
+    onload: function (frm) {
         // Filter for Doctore (Death) field to show only active employees
-        frm.set_query('doctor_death', function() {
+        frm.set_query('doctor_death', function () {
             return {
                 filters: {
                     status: 'Active'
@@ -70,7 +70,7 @@ frappe.ui.form.on('Death Go Register', {
         });
 
         // Filter for Staff(Death) field to show only active doctors
-        frm.set_query('staff_death', function() {
+        frm.set_query('staff_death', function () {
             return {
                 filters: {
                     status: 'Active'
@@ -79,7 +79,7 @@ frappe.ui.form.on('Death Go Register', {
         });
 
         // Filter for Staff (Born) field to show only active employees
-        frm.set_query('staff', function() {
+        frm.set_query('staff', function () {
             return {
                 filters: {
                     status: 'Active'
@@ -88,12 +88,33 @@ frappe.ui.form.on('Death Go Register', {
         });
 
         // Filter for Doctor (Born) field to show only active doctors
-        frm.set_query('doctor', function() {
+        frm.set_query('doctor', function () {
             return {
                 filters: {
                     status: 'Active'
                 }
             };
+        });
+    }
+});
+
+// Delete go master entry when click on save button
+
+frappe.ui.form.on("Death Go Register", {
+    after_save: function(frm) {
+        // Call the server-side method to delete the Go Master document
+        frappe.call({
+            method: "goshala.goshala.doctype.api.delete_go_master_by_id",
+            args: {
+                doc_id: frm.doc.go_master_id // Pass the Go Master ID to be deleted
+            },
+            callback: function(r) {
+                if (r.message && r.message.status === "success") {
+                    frappe.msgprint(__("Go Master document has been deleted successfully."));
+                } else if (r.message && r.message.status === "error") {
+                    frappe.msgprint(__("Error: " + r.message.message));
+                }
+            }
         });
     }
 });

@@ -32,7 +32,7 @@
   "address",
   "column_break_dueb",
   "purchase_date",
-  "donate_date",
+  "donation_date",
   "city",
   "pincode",
   "price",
@@ -118,7 +118,6 @@
    "options": "Employee"
   },
   {
-   "depends_on": "eval:doc.type==\"Birth\" || doc.type==\"Old Entry\"",
    "fieldname": "doctor",
    "fieldtype": "Link",
    "label": "Doctor (Born)",
@@ -174,12 +173,6 @@
    "fieldname": "purchase_date",
    "fieldtype": "Date",
    "label": "Purchase Date"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Donation\"",
-   "fieldname": "donate_date",
-   "fieldtype": "Date",
-   "label": "Donate Date"
   },
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
@@ -250,11 +243,17 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Donation\"",
+   "fieldname": "donation_date",
+   "fieldtype": "Date",
+   "label": "Donation Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-23 12:38:30.370525",
+ "modified": "2024-05-24 11:22:43.672783",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

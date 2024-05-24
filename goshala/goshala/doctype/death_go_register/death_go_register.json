@@ -16,6 +16,7 @@
   "death_image",
   "death_register_image",
   "section_break_kfrc",
+  "go_master_id",
   "go_name",
   "gender",
   "type",
@@ -26,6 +27,7 @@
   "reason_seva",
   "photo",
   "column_break_cork",
+  "goshala_name",
   "tag_number",
   "current_type",
   "nandi_type",
@@ -37,9 +39,10 @@
   "transfer_or_donate_go_details_section",
   "full_name",
   "mobile_no",
-  "purchase__donate_address",
+  "purchase__donation_address",
   "column_break_hsyb",
-  "purchase__donate_date",
+  "purchase_date",
+  "donation_date",
   "city",
   "pincode",
   "price"
@@ -124,7 +127,7 @@
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\";",
    "fieldname": "transfer_or_donate_go_details_section",
    "fieldtype": "Section Break",
-   "label": "Transfer or Donate Go Details"
+   "label": "Purchase / Donation Go Details"
   },
   {
    "fieldname": "full_name",
@@ -137,18 +140,8 @@
    "label": "Mobile No"
   },
   {
-   "fieldname": "purchase__donate_address",
-   "fieldtype": "Small Text",
-   "label": "Purchase / Donate Address"
-  },
-  {
    "fieldname": "column_break_hsyb",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "purchase__donate_date",
-   "fieldtype": "Date",
-   "label": "Purchase / Donate Date"
   },
   {
    "fieldname": "city",
@@ -245,11 +238,39 @@
    "fieldname": "death_register_image",
    "fieldtype": "Attach Image",
    "label": "Death Register Image"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Donation\";",
+   "fieldname": "donation_date",
+   "fieldtype": "Date",
+   "label": "Donation Date"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Purchase\";",
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "purchase__donation_address",
+   "fieldtype": "Small Text",
+   "label": "Purchase / Donation Address"
+  },
+  {
+   "fieldname": "goshala_name",
+   "fieldtype": "Link",
+   "label": "Goshala Name",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "go_master_id",
+   "fieldtype": "Data",
+   "label": "Go Master ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-23 12:35:46.876774",
+ "modified": "2024-05-24 15:16:18.258228",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Death Go Register",

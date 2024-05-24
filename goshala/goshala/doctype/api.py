@@ -120,3 +120,87 @@ def create_sales_invoice(data):
     # Save the Sales Invoice
     si.insert()
 
+# Fetch go details in transfer donate go and death register go doctypes
+
+@frappe.whitelist()
+def fetch_go_master_field_list(doc_id):
+    go_master_field = frappe.get_all(
+        "Go Master",
+        filters={"name": doc_id},
+        fields=[
+            "name",
+            "tag_number",
+            "go_name",
+            "goshala_name",
+            "seva",
+            "reason",
+            "remarks",
+            "gender",
+            "current_type",
+            "nandi_type",
+            "type",
+            "staff",
+            "doctor",
+            "weight",
+            "birth_date_time",
+            "father_name",
+            "mother_name",
+            "colour",
+            "full_name",
+            "mobile_no",
+            "address",
+            "purchase_date",
+            "donation_date",
+            "city",
+            "pincode",
+            "price",
+            "photo"
+        ],
+    )
+
+    return [
+        {
+            "id":go_field.name,
+            "tag_number": go_field.tag_number,
+            "go_name": go_field.go_name,
+            "goshala_name": go_field.goshala_name,
+            "seva":go_field.seva,
+            "reason":go_field.reason,
+            "remarks":go_field.remarks,
+            "gender": go_field.gender,
+            "current_type": go_field.current_type,
+            "nandi_type": go_field.nandi_type,
+            "type": go_field.type,
+            "staff": go_field.staff,
+            "doctor": go_field.doctor,
+            "weight": go_field.weight,
+            "birth_date_time": go_field.birth_date_time,
+            "father_name": go_field.father_name,
+            "mother_name": go_field.mother_name,
+            "colour": go_field.colour,
+            "full_name": go_field.full_name,
+            "mobile_no": go_field.mobile_no,
+            "address": go_field.address,
+            "purchase_date": go_field.purchase_date,
+            "donation_date": go_field.donation_date,
+            "city": go_field.city,
+            "pincode": go_field.pincode,
+            "price": go_field.price,
+            "photo": go_field.photo,            
+        }
+        for go_field in go_master_field
+    ]
+
+
+@frappe.whitelist()
+def delete_go_master_by_id(doc_id):
+    if doc_id:
+        try:
+            frappe.delete_doc("Go Master", doc_id)
+            frappe.db.commit()
+            return {"status": "success", "message": f"Go Master with ID {doc_id} has been deleted."}
+        except Exception as e:
+            frappe.log_error(frappe.get_traceback(), f"Error deleting Go Master with ID {doc_id}")
+            return {"status": "error", "message": str(e)}
+    else:
+        return {"status": "error", "message": "Invalid ID"}
