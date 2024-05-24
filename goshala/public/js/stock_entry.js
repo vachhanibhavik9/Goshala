@@ -123,7 +123,8 @@ function fetchGoMasterList(frm) {
                 // Iterate through the fetched data and add it to the child table
                 response.message.forEach(function (go) {
                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
-                    row.custom_go_name = go;
+                    row.custom_go_name = go.name;
+                    row.custom_tag_number = go.tag_number;
                     row.t_warehouse = "Milk Production - SVG";
                     row.item_code = "Milk";
                     row.uom = "Litre";
@@ -221,9 +222,10 @@ function get_fields(frm) {
         fields = {
             'Stock Entry Detail':
                 [
-                    { fieldname: 'custom_go_name', columns: 3 },
+                    { fieldname: 'custom_go_name', columns: 2 },
+                    { fieldname: 'custom_tag_number', columns: 2 },
                     { fieldname: 't_warehouse', columns: 2 },
-                    { fieldname: 'item_code', columns: 2 },
+                    { fieldname: 'item_code', columns: 1 },
                     { fieldname: 'custom_morning_qty', columns: 1 },
                     { fieldname: 'custom_evening_qty', columns: 1 },
                     { fieldname: 'qty', columns: 1 }
