@@ -175,6 +175,7 @@ function fetch_customer_list(frm) {
                 response.message.forEach(function (cus) {
                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
                     row.custom_customer_name = cus.name;
+                    row.custom_gujarati_name = cus.custom_gujarati_name;
                     row.s_warehouse = "Milk Production - SVG";
                     row.item_code = "Milk";
                     row.uom = "Litre";
@@ -204,8 +205,9 @@ function get_fields(frm) {
             'Stock Entry Detail':
                 [
                     { fieldname: 'custom_customer_name', columns: 2 },
-                    { fieldname: 'custom_pickup', columns: 2 },
-                    { fieldname: 'custom_pickup_counter', columns: 2 },
+                    { fieldname: 'custom_gujarati_name', columns: 2 },
+                    { fieldname: 'custom_pickup', columns: 1 },
+                    { fieldname: 'custom_pickup_counter', columns: 1 },
                     { fieldname: 'custom_delivery_man', columns: 1 },
                     { fieldname: 'custom_morning_qty', columns: 1 },
                     { fieldname: 'custom_evening_qty', columns: 1 },

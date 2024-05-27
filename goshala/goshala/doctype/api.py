@@ -37,14 +37,14 @@ def fetch_go_master_list():
 @frappe.whitelist()
 def fetch_customer_list():
     # Fetch data from the Customer doctype including 'morning_qty' field
-    customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name', 'custom_morning_qty', 'custom_evening_qty', 'custom_pick_up', 'custom_delivery_man', 'custom_pickup_counter'])
+    customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name', 'custom_gujarati_name', 'custom_morning_qty', 'custom_evening_qty', 'custom_pick_up', 'custom_delivery_man', 'custom_pickup_counter'])
 
     # Sort customers based on their delivery method
     # Customers with self-pickup first, then home delivery
     sorted_customer_list = sorted(customer_list, key=lambda cus: cus.custom_pick_up, reverse=True)
 
     # Return sorted list of customers
-    return [{'name': cus.name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
+    return [{'name': cus.name, 'custom_gujarati_name':cus.custom_gujarati_name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
 
 # Fetch customer details month wise in when create sales invoice
 
