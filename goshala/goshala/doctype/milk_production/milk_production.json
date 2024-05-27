@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{DD}-{MM}-{YYYY}",
  "creation": "2024-04-15 15:39:00.287086",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -53,11 +52,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-16 11:26:39.054355",
+ "modified": "2024-05-27 09:54:35.499050",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Milk Production",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

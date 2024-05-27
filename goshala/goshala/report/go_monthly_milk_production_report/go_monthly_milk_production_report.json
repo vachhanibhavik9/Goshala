@@ -1,7 +1,7 @@
 {
  "add_total_row": 0,
  "columns": [],
- "creation": "2024-05-24 15:33:19.071496",
+ "creation": "2024-05-27 10:01:53.676954",
  "disabled": 0,
  "docstatus": 0,
  "doctype": "Report",
@@ -9,14 +9,14 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2024-05-24 16:12:00.664995",
+ "modified": "2024-05-27 10:01:53.676954",
  "modified_by": "Administrator",
  "module": "Goshala",
- "name": "Monthly Milk Production Go Report",
+ "name": "Go Monthly Milk Production Report",
  "owner": "Administrator",
  "prepared_report": 0,
  "ref_doctype": "Stock Entry",
- "report_name": "Monthly Milk Production Go Report",
+ "report_name": "Go Monthly Milk Production Report",
  "report_type": "Script Report",
  "roles": []
 }
