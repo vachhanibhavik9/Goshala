@@ -3,6 +3,22 @@
 
 frappe.query_reports["Go Milk Production Report"] = {
 	"filters": [
+		{
+			"label":"From Date",
+			"fieldname":"from_date",
+			"fieldtype":"Date"
+		},
 
+		{
+			"label":"To Date",
+			"fieldname":"to_date",
+			"fieldtype":"Date"
+		},
+
+		{
+			"label":"Tag No",
+			"fieldname":"tag_no",
+			"fieldtype":"Float"
+		}
 	]
 };
