@@ -12,6 +12,7 @@
   "seva",
   "reason",
   "column_break_ctzh",
+  "enabled",
   "gender",
   "current_type",
   "nandi_type",
@@ -249,11 +250,18 @@
    "fieldname": "donation_date",
    "fieldtype": "Date",
    "label": "Donation Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": " Enabled"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-24 11:22:43.672783",
+ "modified": "2024-05-29 17:43:43.419619",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

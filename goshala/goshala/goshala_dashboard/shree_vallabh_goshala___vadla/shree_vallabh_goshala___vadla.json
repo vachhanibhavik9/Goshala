@@ -26,6 +26,9 @@
   },
   {
    "card": "Total Nandi For Donation"
+  },
+  {
+   "card": "Total Our Nandi"
   }
  ],
  "charts": [
@@ -37,10 +40,10 @@
  "dashboard_name": "Shree Vallabh Goshala - Vadla",
  "docstatus": 0,
  "doctype": "Dashboard",
- "idx": 0,
+ "idx": 1,
  "is_default": 1,
  "is_standard": 1,
- "modified": "2024-05-29 15:24:26.819590",
+ "modified": "2024-05-29 18:02:29.689069",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Shree Vallabh Goshala - Vadla",

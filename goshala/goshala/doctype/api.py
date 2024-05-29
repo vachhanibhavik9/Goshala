@@ -26,7 +26,7 @@ def change_go_type():
 @frappe.whitelist()
 def fetch_go_master_list():
     # Fetch data from the Go Master doctype
-    go_master_list = frappe.get_all('Go Master', filters={"goshala_name":"Shree Vallabh Goshala - Vadla", "current_type":"Dujani"}, fields=['name','tag_number'])
+    go_master_list = frappe.get_all('Go Master', filters={"enabled":1, "goshala_name":"Shree Vallabh Goshala - Vadla", "current_type":"Dujani"}, fields=['name','tag_number'])
     
     # return [go.name for go in go_master_list]
     return [{'name': go.name, 'tag_number': go.tag_number} for go in go_master_list]
@@ -195,14 +195,20 @@ def fetch_go_master_field_list(doc_id):
 
 
 @frappe.whitelist()
-def delete_go_master_by_id(doc_id):
+def disable_go_master_by_id(doc_id):
     if doc_id:
         try:
-            frappe.delete_doc("Go Master", doc_id)
+            # Fetch the Go Master document by ID
+            go_master = frappe.get_doc("Go Master", doc_id)
+            # Uncheck the 'enabled' field
+            go_master.enabled = 0
+            # Save the document
+            go_master.save()
             frappe.db.commit()
-            return {"status": "success", "message": f"Go Master with ID {doc_id} has been deleted."}
+            return {"status": "success", "message": f"Go Master with ID {doc_id} has been disabled."}
         except Exception as e:
-            frappe.log_error(frappe.get_traceback(), f"Error deleting Go Master with ID {doc_id}")
+            frappe.log_error(frappe.get_traceback(), f"Error disabling Go Master with ID {doc_id}")
             return {"status": "error", "message": str(e)}
     else:
         return {"status": "error", "message": "Invalid ID"}
+

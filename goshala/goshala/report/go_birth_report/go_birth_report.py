@@ -57,6 +57,7 @@ def execute(filters=None):
         FROM
             `tabGo Master`
         WHERE
+            enabled = 1 AND
             {where_clause}
     """
 
