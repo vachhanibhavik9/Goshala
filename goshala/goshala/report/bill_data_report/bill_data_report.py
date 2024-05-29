@@ -25,13 +25,8 @@ def execute(filters=None):
     # Ensure filters are passed and retrieve the month_year filter
     if "month_year" in filters:
         month_year = filters.get("month_year")
-        if month_year:
-            # Convert date to custom month format (e.g., May-2024)
-            custom_month = datetime.strptime(month_year, "%Y-%m-%d").strftime("%B-%Y")
-            print(custom_month)  # This will print "May-2024"
-        else:
-            # Show all data because the filter is blank
-            print("Showing all data")  # Replace this with the code to show all data
+        # Convert date to custom month format (e.g., May-2024)
+        custom_month = datetime.strptime(month_year, "%Y-%m-%d").strftime("%B-%Y")
     else:
         frappe.throw("Month Year filter is required")
 
