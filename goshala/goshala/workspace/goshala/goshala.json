@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"8hQT4FozwV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Dashboard</b></span>\",\"col\":12}},{\"id\":\"q2IwXlpRp2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"HKyRn8XIMi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Shree Vallabh Goshala - Vadla\",\"col\":4}},{\"id\":\"fbqxUZjZBo\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"KLDHPy26RM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Doctypes Shortcuts</b></span>\",\"col\":12}},{\"id\":\"sf2TfLe010\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"gAsnTyfDi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Master\",\"col\":4}},{\"id\":\"I065nJaDyN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transfer or Donate Go\",\"col\":4}},{\"id\":\"wXAYualmxF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Death Go Register\",\"col\":4}},{\"id\":\"iVhaIoDWat\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"riUxCI0UUd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":4}},{\"id\":\"WnQPexM6eq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":4}},{\"id\":\"GcJSCsa47f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":4}},{\"id\":\"nFeDMeqcOi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"q5CKGG02ix\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":4}},{\"id\":\"x-BplK4Eqp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Address\",\"col\":4}},{\"id\":\"vz9Cmx-q0a\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Contact\",\"col\":4}},{\"id\":\"KnrRVaCmJn\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"i9Jw572nwU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Master\",\"col\":4}},{\"id\":\"eAyu1v1JHg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Staff Master\",\"col\":4}},{\"id\":\"9FOZOSs-g2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Master\",\"col\":4}},{\"id\":\"uCNEbrWe68\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"2dBDIGBG-c\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Man\",\"col\":4}},{\"id\":\"evC2tYL7K3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Branch\",\"col\":4}},{\"id\":\"310yrFEz0c\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"OIcdPyom0E\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"eimhGTweAV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"-pN6eH1Z4H\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Monthly Milk Production Report\",\"col\":4}},{\"id\":\"UIJVVY4yV0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Milk Production Report\",\"col\":4}},{\"id\":\"Zi2fMiaNmm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Birth Report\",\"col\":4}},{\"id\":\"MUqt8UvsBK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"lEQc7RABRl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Bill Data Report\",\"col\":4}}]",
+ "content": "[{\"id\":\"8hQT4FozwV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Dashboard</b></span>\",\"col\":12}},{\"id\":\"q2IwXlpRp2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"G5PltD7sl4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Shree Vallabh Goshala - Vadla\",\"col\":4}},{\"id\":\"fbqxUZjZBo\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"KLDHPy26RM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Doctypes Shortcuts</b></span>\",\"col\":12}},{\"id\":\"sf2TfLe010\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"gAsnTyfDi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Master\",\"col\":4}},{\"id\":\"I065nJaDyN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transfer or Donate Go\",\"col\":4}},{\"id\":\"wXAYualmxF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Death Go Register\",\"col\":4}},{\"id\":\"iVhaIoDWat\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"riUxCI0UUd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":4}},{\"id\":\"WnQPexM6eq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":4}},{\"id\":\"GcJSCsa47f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":4}},{\"id\":\"nFeDMeqcOi\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"q5CKGG02ix\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":4}},{\"id\":\"x-BplK4Eqp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Address\",\"col\":4}},{\"id\":\"vz9Cmx-q0a\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Contact\",\"col\":4}},{\"id\":\"KnrRVaCmJn\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"i9Jw572nwU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Master\",\"col\":4}},{\"id\":\"eAyu1v1JHg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Staff Master\",\"col\":4}},{\"id\":\"9FOZOSs-g2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Master\",\"col\":4}},{\"id\":\"uCNEbrWe68\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"2dBDIGBG-c\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Man\",\"col\":4}},{\"id\":\"evC2tYL7K3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Branch\",\"col\":4}},{\"id\":\"310yrFEz0c\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"OIcdPyom0E\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"eimhGTweAV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"-pN6eH1Z4H\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Monthly Milk Production Report\",\"col\":4}},{\"id\":\"UIJVVY4yV0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Milk Production Report\",\"col\":4}},{\"id\":\"Zi2fMiaNmm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Go Birth Report\",\"col\":4}},{\"id\":\"MUqt8UvsBK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"lEQc7RABRl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Bill Data Report\",\"col\":4}}]",
  "creation": "2024-04-30 13:38:13.918962",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Goshala",
  "links": [],
- "modified": "2024-05-28 13:53:04.678972",
+ "modified": "2024-05-29 15:25:54.901149",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Goshala",
@@ -65,19 +65,19 @@
    "type": "Report"
   },
   {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Shree Vallabh Goshala - Vadla",
+   "link_to": "Shree Vallabh Goshala - Vadla",
+   "type": "Dashboard"
+  },
+  {
    "color": "Green",
    "doc_view": "List",
    "label": "Branch",
    "link_to": "Branch",
    "stats_filter": "[]",
    "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Shree Vallabh Goshala - Vadla",
-   "link_to": "Shree Vallabh Goshala - Vadla",
-   "type": "Dashboard"
   },
   {
    "color": "Green",
