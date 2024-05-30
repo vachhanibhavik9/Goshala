@@ -176,7 +176,7 @@
   },
   {
    "fieldname": "contact_no",
-   "fieldtype": "Int",
+   "fieldtype": "Phone",
    "label": "Contact No"
   },
   {
@@ -208,7 +208,7 @@
   },
   {
    "fieldname": "mobile_no",
-   "fieldtype": "Int",
+   "fieldtype": "Phone",
    "label": "Mobile No"
   },
   {
@@ -308,7 +308,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-24 13:22:10.900588",
+ "modified": "2024-05-30 12:07:17.124946",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",

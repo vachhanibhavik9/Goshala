@@ -156,7 +156,7 @@
   {
    "depends_on": "eval:doc.type==\"Purchase\" || doc.type==\"Donation\"",
    "fieldname": "mobile_no",
-   "fieldtype": "Int",
+   "fieldtype": "Phone",
    "label": "Mobile No"
   },
   {
@@ -261,7 +261,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-29 17:43:43.419619",
+ "modified": "2024-05-30 12:03:34.291855",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

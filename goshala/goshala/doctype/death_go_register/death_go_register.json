@@ -136,7 +136,7 @@
   },
   {
    "fieldname": "mobile_no",
-   "fieldtype": "Int",
+   "fieldtype": "Phone",
    "label": "Mobile No"
   },
   {
@@ -270,7 +270,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-24 15:16:18.258228",
+ "modified": "2024-05-30 12:08:24.078547",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Death Go Register",
