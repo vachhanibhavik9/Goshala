@@ -181,6 +181,7 @@ function fetch_customer_list(frm) {
                     row.uom = "Litre";
                     row.custom_pickup = cus.pick_up;
                     row.custom_delivery_man = cus.delivery_man;
+                    row.custom_shift = cus.custom_shift;
                     row.custom_pickup_counter = cus.pickup_counter;
                     
                     var morning_qty_float = parseFloat(cus.morning_qty);
@@ -206,9 +207,9 @@ function get_fields(frm) {
                 [
                     { fieldname: 'custom_customer_name', columns: 2 },
                     { fieldname: 'custom_gujarati_name', columns: 2 },
-                    { fieldname: 'custom_pickup', columns: 1 },
                     { fieldname: 'custom_pickup_counter', columns: 1 },
                     { fieldname: 'custom_delivery_man', columns: 1 },
+                    { fieldname: 'custom_shift', columns: 1 },
                     { fieldname: 'custom_morning_qty', columns: 1 },
                     { fieldname: 'custom_evening_qty', columns: 1 },
                     { fieldname: 'qty', columns: 1 },

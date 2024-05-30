@@ -1,4 +1,34 @@
+// Custom Sales Invoice List View Script
+
 frappe.listview_settings["Sales Invoice"] = {
+    add_fields: [
+        "customer",
+        "customer_name",
+        "base_grand_total",
+        "outstanding_amount",
+        "due_date",
+        "company",
+        "currency",
+        "is_return",
+    ],
+    get_indicator: function (doc) {
+        const status_colors = {
+            Draft: "grey",
+            Unpaid: "orange",
+            Paid: "green",
+            Return: "gray",
+            "Credit Note Issued": "gray",
+            "Unpaid and Discounted": "orange",
+            "Partly Paid and Discounted": "yellow",
+            "Overdue and Discounted": "red",
+            Overdue: "red",
+            "Partly Paid": "yellow",
+            "Internal Transfer": "darkgrey",
+        };
+        return [__(doc.status), status_colors[doc.status], "status,=," + doc.status];
+    },
+    right_column: "grand_total",
+
     onload: function (list_view) {
         list_view.page.add_button("Create Sales Invoice", function () {
             frappe.prompt(
@@ -8,7 +38,7 @@ frappe.listview_settings["Sales Invoice"] = {
                         fieldname: 'month',
                         fieldtype: 'Select',
                         reqd: true,
-                        options: [ 
+                        options: [
                             { label: 'January', value: 1 },
                             { label: 'February', value: 2 },
                             { label: 'March', value: 3 },
@@ -44,14 +74,21 @@ frappe.listview_settings["Sales Invoice"] = {
                 function (values) {
                     // Call fetch_stock_entry_data method with the user-entered month, year, and customer
                     fetch_stock_entry_data(values.month, values.year, values.customer);
-        
                 },
                 'Select Month, Year, and Customer'
             );
         });
-    },
-};
 
+        // Default ERPNext actions
+        list_view.page.add_action_item(__("Delivery Note"), () => {
+            erpnext.bulk_transaction_processing.create(list_view, "Sales Invoice", "Delivery Note");
+        });
+
+        list_view.page.add_action_item(__("Payment"), () => {
+            erpnext.bulk_transaction_processing.create(list_view, "Sales Invoice", "Payment Entry");
+        });
+    }
+};
 
 function fetch_stock_entry_data(month, year, customer) {
     // Use frappe.confirm to show a confirmation popup
@@ -76,37 +113,3 @@ function fetch_stock_entry_data(month, year, customer) {
         }
     );
 }
-
-
-
-
-
-// function create_sales_invoice(data) {
-//     frappe.model.with_doctype('Sales Invoice', function () {
-//         let new_si = frappe.model.get_new_doc('Sales Invoice');
-
-//         // Set values for the Sales Invoice
-//         new_si.customer = data.custom_customer_name;
-//         new_si.posting_date = frappe.datetime.get_today(); // Set current date as the posting date
-
-//         // Format due_date to 'YYYY-MM-DD'
-//         // const due_date = frappe.datetime.add_days(frappe.datetime.get_today(), 30); // Set due date 30 days from today
-//         // new_si.due_date = due_date; // Set formatted due_date
-
-//         // Add items to the Sales Invoice
-//         let item = frappe.model.add_child(new_si, 'items');
-//         item.item_code = 'Milk';
-//         item.item_name = 'Milk';
-//         item.custom_month = data.month_year;
-//         item.custom_morning_qty = data.total_morning_qty;
-//         item.custom_evening_qty = data.total_evening_qty;
-//         item.qty = data.total_morning_qty + data.total_evening_qty;
-
-//         // Save the Sales Invoice
-//         frappe.db.insert(new_si).then(function (doc) {
-//             // frappe.model.sync(doc);
-//             // frappe.set_route('Form', 'Sales Invoice', doc.name);
-//         });
-//     });
-// }
-
