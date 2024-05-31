@@ -104,11 +104,17 @@ def create_sales_invoice(data):
     mo_no = frappe.db.get_value("Contact",doc_name,"mobile_no")
     
     # Create the Sales Invoice document
+    
+    # Calculate due date
+    posting_date = frappe.utils.nowdate()
+    due_date = frappe.utils.add_days(posting_date, 15)
+
     si = frappe.get_doc({
         "doctype": "Sales Invoice",
         "customer": data['custom_customer_name'],
         "custom_contact_no": mo_no,
-        "posting_date": frappe.utils.nowdate(),
+        "posting_date": posting_date,
+        "due_date": due_date,  # Adding the due date field and setting its value
         "items": [{
             "item_code": "Milk",
             "item_name": "Milk",

@@ -61,6 +61,7 @@
    "fieldname": "tag_number",
    "fieldtype": "Float",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Tag Number"
   },
   {
@@ -100,6 +101,7 @@
   {
    "fieldname": "from_goshala",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "From Goshala",
    "options": "Branch"
   },
@@ -308,7 +310,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-30 12:07:17.124946",
+ "modified": "2024-05-31 10:20:06.174650",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Transfer or Donate Go",

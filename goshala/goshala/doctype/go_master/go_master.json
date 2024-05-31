@@ -74,6 +74,7 @@
    "fieldname": "tag_number",
    "fieldtype": "Float",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Tag Number",
    "reqd": 1
   },
@@ -261,7 +262,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-30 12:03:34.291855",
+ "modified": "2024-05-31 10:13:55.132017",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",
