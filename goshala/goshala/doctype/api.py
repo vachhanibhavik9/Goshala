@@ -26,10 +26,27 @@ def change_go_type():
 @frappe.whitelist()
 def fetch_go_master_list():
     # Fetch data from the Go Master doctype
-    go_master_list = frappe.get_all('Go Master', filters={"enabled":1, "goshala_name":"Shree Vallabh Goshala - Vadla", "current_type":"Dujani"}, fields=['name','tag_number'])
+    go_master_list = frappe.get_all(
+        'Go Master', 
+        filters={"enabled": 1, "goshala_name": "Shree Vallabh Goshala - Vadla", "current_type": "Dujani"},
+        fields=['go_name', 'tag_number']
+    )
     
-    # return [go.name for go in go_master_list]
-    return [{'name': go.name, 'tag_number': go.tag_number} for go in go_master_list]
+    # Function to convert tag_number to a float if possible, otherwise return a high value
+    def parse_tag_number(tag):
+        try:
+            return float(tag)
+        except ValueError:
+            return float('inf')
+    
+    # Sort the list using the custom key
+    sorted_go_master_list = sorted(
+        go_master_list, 
+        key=lambda x: parse_tag_number(x['tag_number'])
+    )
+    
+    return [{'go_name': go['go_name'], 'tag_number': go['tag_number']} for go in sorted_go_master_list]
+
 
     
 # Fetch customer list in stock entry doctype where stock entry type is milk sales
@@ -39,12 +56,12 @@ def fetch_customer_list():
     # Fetch data from the Customer doctype including 'morning_qty' field
     customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name', 'custom_gujarati_name', 'custom_shift', 'custom_morning_qty', 'custom_evening_qty', 'custom_pick_up', 'custom_delivery_man', 'custom_pickup_counter'])
 
-    # Sort customers based on their delivery method
-    # Customers with self-pickup first, then home delivery
-    sorted_customer_list = sorted(customer_list, key=lambda cus: cus.custom_pick_up, reverse=True)
+    # Sort customers first based on their pick_up method and then by name in ascending order
+    sorted_customer_list = sorted(customer_list, key=lambda cus: (cus.name))
 
     # Return sorted list of customers
-    return [{'name': cus.name, 'custom_shift': cus.custom_shift, 'custom_gujarati_name':cus.custom_gujarati_name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
+    return [{'name': cus.name, 'custom_shift': cus.custom_shift, 'custom_gujarati_name': cus.custom_gujarati_name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
+
 
 # Fetch customer details month wise in when create sales invoice
 

@@ -48,6 +48,8 @@ def execute(filters=None):
             `tabSales Invoice` si ON si.name = sii.parent
         WHERE
             sii.custom_month = %s
+        ORDER BY
+            si.name ASC
     """
     
     # Execute the SQL query with the filter value

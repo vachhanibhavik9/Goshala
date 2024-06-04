@@ -5,28 +5,23 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "tag_number",
-  "go_name",
+  "go_details_section",
   "goshala_name",
-  "date",
-  "seva",
-  "reason",
-  "column_break_ctzh",
-  "enabled",    
+  "type",
+  "colour",
+  "weight",
+  "doctor",
+  "tag_number",
   "gender",
+  "column_break_ctzh",
+  "enabled",
+  "birth_date_time",
+  "mother_name",
+  "father_name",
+  "staff",
+  "go_name",
   "current_type",
   "nandi_type",
-  "remarks",
-  "section_break_kyvv",
-  "type",
-  "staff",
-  "doctor",
-  "weight",
-  "column_break_tfzn",
-  "birth_date_time",
-  "father_name",
-  "mother_name",
-  "colour",
   "section_break_exxm",
   "full_name",
   "mobile_no",
@@ -39,7 +34,10 @@
   "price",
   "section_break_qerg",
   "photo",
+  "seva",
+  "reason",
   "column_break_deel",
+  "remarks",
   "amended_from"
  ],
  "fields": [
@@ -57,13 +55,6 @@
    "in_standard_filter": 1,
    "label": "Goshala Name",
    "options": "Branch",
-   "reqd": 1
-  },
-  {
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Posting Date",
    "reqd": 1
   },
   {
@@ -102,11 +93,6 @@
    "options": "\nOld Age\nHealth Issue"
   },
   {
-   "fieldname": "section_break_kyvv",
-   "fieldtype": "Section Break",
-   "label": "Go Details"
-  },
-  {
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
@@ -126,23 +112,21 @@
    "options": "Doctor Master"
   },
   {
-   "fieldname": "column_break_tfzn",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "birth_date_time",
    "fieldtype": "Datetime",
    "label": "Birth Date Time"
   },
   {
    "fieldname": "father_name",
-   "fieldtype": "Data",
-   "label": "Father Name"
+   "fieldtype": "Link",
+   "label": "Father Name",
+   "options": "Go Master"
   },
   {
    "fieldname": "mother_name",
-   "fieldtype": "Data",
-   "label": "Mother Name"
+   "fieldtype": "Link",
+   "label": "Mother Name",
+   "options": "Go Master"
   },
   {
    "fieldname": "section_break_exxm",
@@ -258,11 +242,16 @@
    "fieldtype": "Check",
    "in_standard_filter": 1,
    "label": " Enabled"
+  },
+  {
+   "fieldname": "go_details_section",
+   "fieldtype": "Section Break",
+   "label": "Go Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-03 11:34:06.852988",
+ "modified": "2024-06-04 13:38:20.297656",
  "modified_by": "Administrator",
  "module": "Goshala",
  "name": "Go Master",

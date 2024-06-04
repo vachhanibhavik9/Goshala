@@ -106,9 +106,6 @@ function setTotalEveningMilk(doc) {
     doc.custom_total_evening_milk = totalEveningMilk;
 }
 
-
-
-
 // Get Go from Go Master where current type is dujani
 
 function fetchGoMasterList(frm) {
@@ -123,7 +120,7 @@ function fetchGoMasterList(frm) {
                 // Iterate through the fetched data and add it to the child table
                 response.message.forEach(function (go) {
                     var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
-                    row.custom_go_name = go.name;
+                    row.custom_go_name = go.go_name;
                     row.custom_tag_number = go.tag_number;
                     row.t_warehouse = "Milk Production - SVG";
                     row.item_code = "Milk";
@@ -227,11 +224,9 @@ function get_fields(frm) {
                 [
                     { fieldname: 'custom_go_name', columns: 2 },
                     { fieldname: 'custom_tag_number', columns: 2 },
-                    { fieldname: 't_warehouse', columns: 2 },
-                    { fieldname: 'item_code', columns: 1 },
-                    { fieldname: 'custom_morning_qty', columns: 1 },
-                    { fieldname: 'custom_evening_qty', columns: 1 },
-                    { fieldname: 'qty', columns: 1 }
+                    { fieldname: 'custom_morning_qty', columns: 2 },
+                    { fieldname: 'custom_evening_qty', columns: 2 },
+                    { fieldname: 'qty', columns: 2 }
                 ]
         }
         frappe.model.user_settings.save(frm.doctype, "GridView", fields).then((r) => {
