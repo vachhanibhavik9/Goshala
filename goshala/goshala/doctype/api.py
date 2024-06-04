@@ -216,6 +216,7 @@ def fetch_go_master_field_list(doc_id):
         for go_field in go_master_field
     ]
 
+# Disable go master when donate go
 
 @frappe.whitelist()
 def disable_go_master_by_id(doc_id):
@@ -234,4 +235,23 @@ def disable_go_master_by_id(doc_id):
             return {"status": "error", "message": str(e)}
     else:
         return {"status": "error", "message": "Invalid ID"}
+    
+# Change goshala name when transfer go
 
+@frappe.whitelist()
+def update_goshala_name(doc_id, goshala_name):
+    if doc_id:
+        try:
+            # Fetch the Go Master document by ID
+            go_master = frappe.get_doc("Go Master", doc_id)
+            # Update the Goshala Name
+            go_master.goshala_name = goshala_name
+            # Save the document
+            go_master.save()
+            frappe.db.commit()
+            return {"status": "success", "message": f"Goshala Name in Go Master has been updated."}
+        except Exception as e:
+            frappe.log_error(frappe.get_traceback(), f"Error updating Goshala Name in Go Master")
+            return {"status": "error", "message": str(e)}
+    else:
+        return {"status": "error", "message": "Invalid ID"}

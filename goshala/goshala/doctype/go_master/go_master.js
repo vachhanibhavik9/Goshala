@@ -193,3 +193,61 @@ frappe.ui.form.on('Go Master', {
         }, __('Go To'));
     }
 });
+
+// Fetch go master in mother name field where current type is hodaki or parkh
+
+frappe.ui.form.on('Go Master', {
+    refresh: function(frm) {
+        frm.fields_dict['mother_name'].get_query = function(doc) {
+            return {
+                filters: [
+                    ['Go Master', 'goshala_name', '=', doc.goshala_name],
+                    ['Go Master', 'current_type', 'in', ['Hodaki', 'Parkh']]
+                ]
+            };
+        };
+    }
+});
+
+// Fetch go master in father name field where current type is hodaki or parkh
+
+frappe.ui.form.on('Go Master', {
+    refresh: function(frm) {
+        frm.fields_dict['father_name'].get_query = function(doc) {
+            return {
+                filters: [
+                    ['Go Master', 'goshala_name', '=', doc.goshala_name],
+                    ['Go Master', 'nandi_type', 'in', ['Our Nandi']]
+                ]
+            };
+        };
+    }
+});
+
+// Auto set current type male & female value when type is birth
+
+frappe.ui.form.on('Go Master', {
+    type: function(frm) {
+        set_current_type(frm);
+    },
+    gender: function(frm) {
+        set_current_type(frm);
+    }
+});
+
+function set_current_type(frm) {
+    if (frm.doc.type === 'Birth') {
+        if (frm.doc.gender === 'Male') {
+            frm.set_value('current_type', 'Vachhardo');
+        } else if (frm.doc.gender === 'Female') {
+            frm.set_value('current_type', 'Vachhardi');
+        } else {
+            frm.set_value('current_type', '');
+        }
+    } else {
+        frm.set_value('current_type', '');
+    }
+}
+
+// Where user create new birth entry that time that entry mother name id current type is change to dujani
+
