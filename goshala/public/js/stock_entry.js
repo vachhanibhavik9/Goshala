@@ -239,10 +239,12 @@ function get_fields(frm) {
         fields = {
             'Stock Entry Detail':
                 [
-                    { fieldname: 'item_code', columns: 3 },
-                    { fieldname: 's_warehouse', columns: 3 },
+                    { fieldname: 'item_code', columns: 2 },
+                    // { fieldname: 's_warehouse', columns: 2 },
                     { fieldname: 'custom_in_house_consumption', columns: 2 },
-                    { fieldname: 'qty', columns: 2 },
+                    { fieldname: 'custom_use_milk', columns: 3 },
+                    { fieldname: 'custom_haveli', columns: 2 },
+                    { fieldname: 'qty', columns: 1 },
                 ]
         }
         frappe.model.user_settings.save(frm.doctype, "GridView", fields).then((r) => {
@@ -257,9 +259,10 @@ function get_fields(frm) {
             'Stock Entry Detail':
                 [
                     { fieldname: 'item_code', columns: 2 },
-                    { fieldname: 's_warehouse', columns: 3 },
-                    { fieldname: 't_warehouse', columns: 3 },
+                    { fieldname: 's_warehouse', columns: 2 },
+                    { fieldname: 't_warehouse', columns: 2 },
                     { fieldname: 'qty', columns: 2 },
+                    { fieldname: 'is_finished_item', columns: 2 }
                 ]
         }
         frappe.model.user_settings.save(frm.doctype, "GridView", fields).then((r) => {
@@ -305,3 +308,67 @@ function default_fields(frm) {
     });
 }
 
+// Set total qty field read only when stock entry type is milk production or milk sales
+
+frappe.ui.form.on('Stock Entry', {
+    refresh: function(frm) {
+        set_qty_read_only(frm);
+    },
+    stock_entry_type: function(frm) {
+        set_qty_read_only(frm);
+    }
+});
+
+frappe.ui.form.on('Stock Entry Detail', {
+    qty: function(frm, cdt, cdn) {
+        set_qty_read_only(frm);
+    }
+});
+
+function set_qty_read_only(frm) {
+    let is_read_only = (frm.doc.stock_entry_type === 'Milk Production' || frm.doc.stock_entry_type === 'Milk Sales');
+    frm.fields_dict['items'].grid.update_docfield_property('qty', 'read_only', is_read_only);
+    frm.fields_dict['items'].grid.refresh();
+}
+
+// Auto set source warehouse as per item code
+
+frappe.ui.form.on('Stock Entry', {
+    stock_entry_type: function(frm) {
+        // Refresh the child table when stock entry type is changed
+        frm.fields_dict.items.grid.grid_rows.forEach(function(row) {
+            row.doc.s_warehouse = '';
+            row.refresh_field('s_warehouse');
+            row.doc.s_warehouse = '';
+            row.refresh_field('t_warehouse');
+        });
+    }
+});
+
+frappe.ui.form.on('Stock Entry Detail', {
+    item_code: function(frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+        if (frm.doc.stock_entry_type === 'In-House Consumption') {
+            if (row.item_code === 'Milk') {
+                frappe.model.set_value(cdt, cdn, 's_warehouse', 'Milk Production - SVG');
+            } 
+            else if (row.item_code === 'ButterMilk') {
+                frappe.model.set_value(cdt, cdn, 's_warehouse', 'ButterMilk - SVG');
+            } 
+            else if (row.item_code === 'Ghee') {
+                frappe.model.set_value(cdt, cdn, 's_warehouse', 'Ghee - SVG');
+            }
+        }
+        else if (frm.doc.stock_entry_type === 'Manufacture') {
+            if (row.item_code === 'Milk') {
+                frappe.model.set_value(cdt, cdn, 's_warehouse', 'Milk Production - SVG');
+            } 
+            // else if (row.item_code === 'ButterMilk') {
+            //     frappe.model.set_value(cdt, cdn, 't_warehouse', 'ButterMilk - SVG');
+            // } 
+            else if (row.item_code === 'Ghee') {
+                frappe.model.set_value(cdt, cdn, 't_warehouse', 'Ghee - SVG');
+            }
+        }
+    }
+});
