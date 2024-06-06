@@ -372,3 +372,18 @@ frappe.ui.form.on('Stock Entry Detail', {
         }
     }
 });
+
+// Delete row where morning and evening qty is zero
+
+frappe.ui.form.on('Stock Entry', {
+    before_save: function(frm) {
+        // Iterate over each item in the child table
+        let items_to_keep = [];
+        frm.doc.items.forEach(function(item) {
+            if(item.custom_morning_qty != 0 || item.custom_evening_qty != 0) {
+                items_to_keep.push(item);
+            }
+        });
+        frm.doc.items = items_to_keep;
+    }
+});
