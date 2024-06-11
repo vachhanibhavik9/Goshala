@@ -209,14 +209,13 @@ frappe.ui.form.on('Go Master', {
     }
 });
 
-// Fetch go master in father name field where current type is hodaki or parkh
+// Fetch go master in father name field where nandi type is our nandi
 
 frappe.ui.form.on('Go Master', {
     refresh: function (frm) {
         frm.fields_dict['father_name'].get_query = function (doc) {
             return {
                 filters: [
-                    ['Go Master', 'goshala_name', '=', doc.goshala_name],
                     ['Go Master', 'nandi_type', 'in', ['Our Nandi']]
                 ]
             };

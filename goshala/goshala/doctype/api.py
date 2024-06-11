@@ -57,7 +57,7 @@ def fetch_customer_list():
     customer_list = frappe.get_all('Customer', filters={'disabled': 0}, fields=['name', 'custom_gujarati_name', 'custom_shift', 'custom_morning_qty', 'custom_evening_qty', 'custom_pick_up', 'custom_delivery_man', 'custom_pickup_counter'])
 
     # Sort customers first based on their pick_up method and then by name in ascending order
-    sorted_customer_list = sorted(customer_list, key=lambda cus: (cus.name))
+    sorted_customer_list = sorted(customer_list, key=lambda cus: (cus.custom_gujarati_name))
 
     # Return sorted list of customers
     return [{'name': cus.name, 'custom_shift': cus.custom_shift, 'custom_gujarati_name': cus.custom_gujarati_name, 'morning_qty': cus.custom_morning_qty, 'evening_qty': cus.custom_evening_qty, 'pick_up': cus.custom_pick_up, 'delivery_man': cus.custom_delivery_man, 'pickup_counter': cus.custom_pickup_counter} for cus in sorted_customer_list]
