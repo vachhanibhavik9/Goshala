@@ -1,4 +1,3 @@
-
 // Total Qty of Morning Qty + Evening Qty in Stock Entry Items Table
 frappe.ui.form.on('Stock Entry Detail', {
     custom_morning_qty: function (frm, cdt, cdn) {
@@ -9,8 +8,6 @@ frappe.ui.form.on('Stock Entry Detail', {
     }
 
 });
-
-
 
 
 // Set Morning Total Qty, Evening Qty and Total Qty
@@ -28,7 +25,7 @@ frappe.ui.form.on('Stock Entry', {
             // Set the default target warehouse for Milk Production
             frm.set_value('to_warehouse', 'Milk Production - SVG');
             frm.add_custom_button(__('Get Go'), function () {
-                fetchGoMasterList(frm);
+                fetchGoMasterListByBranch(frm);
                 fetchGoMasterListForFiltering(frm);
             });
         }
@@ -106,33 +103,57 @@ function setTotalEveningMilk(doc) {
     doc.custom_total_evening_milk = totalEveningMilk;
 }
 
-// Get Go from Go Master where current type is dujani
+// Trigger the popup and fetch go data where current type is dujani based on the selected branch
 
-function fetchGoMasterList(frm) {
-    // Make an AJAX call to fetch data from the Go Master doctype
-    frappe.call({
-        method: 'goshala.goshala.doctype.api.fetch_go_master_list',
-        callback: function (response) {
-            if (response.message) {
-                // Clear existing child table rows
-                frm.clear_table('items');
-
-                // Iterate through the fetched data and add it to the child table
-                response.message.forEach(function (go) {
-                    var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
-                    row.custom_go_name = go.go_name;
-                    row.custom_tag_number = go.tag_number;
-                    row.t_warehouse = "Milk Production - SVG";
-                    row.item_code = "Milk";
-                    row.uom = "Litre";
-                    // Set other fields as needed
-                });
-
-                // Refresh the form to reflect the changes
-                frm.refresh_field('items');
+function fetchGoMasterListByBranch(frm) {
+    // Show a dialog to select the branch
+    let dialog = new frappe.ui.Dialog({
+        title: 'Select Goshala',
+        fields: [
+            {
+                label: 'Goshala Name',
+                fieldname: 'goshala',
+                fieldtype: 'Link',
+                options: 'Branch', // Assuming there's a Branch doctype or similar
+                default: 'Shree Vallabh Goshala - Vadla',
+                reqd: 1
             }
+        ],
+        primary_action_label: 'Fetch Go',
+        primary_action(values) {
+
+            frm.set_value('custom_goshala_name', values.goshala);
+            
+            // Fetch data based on selected branch
+            frappe.call({
+                method: 'goshala.goshala.doctype.api.fetch_go_master_list',
+                args: {
+                    goshala_name: values.goshala
+                },
+                callback: function (response) {
+                    if (response.message) {
+                        // Clear existing child table rows
+                        frm.clear_table('items');
+                        
+                        // Iterate through the fetched data and add it to the child table
+                        response.message.forEach(function (go) {
+                            var row = frappe.model.add_child(frm.doc, 'Stock Entry Detail', 'items');
+                            row.custom_go_name = go.go_name;
+                            row.custom_tag_number = go.tag_number;
+                            row.t_warehouse = "Milk Production - SVG";
+                            row.item_code = "Milk";
+                            row.uom = "Litre";
+                        });
+                        
+                        // Refresh the form to reflect the changes
+                        frm.refresh_field('items');
+                    }
+                }
+            });
+            dialog.hide();
         }
     });
+    dialog.show();
 }
 
 // if user add row and add Go so only show that Go where current type is dujani

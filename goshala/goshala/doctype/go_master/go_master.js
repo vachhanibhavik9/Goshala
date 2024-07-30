@@ -250,3 +250,26 @@ function set_current_type(frm) {
         frm.set_value('current_type', '');
     }
 }
+
+// Update current type of mother when create new entry and type is birth
+
+frappe.ui.form.on('Go Master', {
+    after_save: function (frm) {
+        frappe.call({
+            method: "goshala.goshala.doctype.api.update_current_type",
+            args: {
+                doc: frm.doc.name 
+            },
+            callback: function (r) {
+                if (r.message && r.message.status === "success") {
+                
+                    let mother_name = frm.doc.mother_name ;
+                    frappe.msgprint(__(mother_name + " current type change has been updated to Dujani"));
+                } 
+                else if (r.message && r.message.status === "error") {
+                    frappe.msgprint(__("Error: " + r.message.message));
+                }
+            }
+        });
+    }
+});

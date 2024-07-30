@@ -24,13 +24,13 @@ def change_go_type():
 # Fetch go master list in stock entry doctype where stock entry type is milk production
 
 @frappe.whitelist()
-def fetch_go_master_list():
+def fetch_go_master_list(goshala_name=None):
     # Fetch data from the Go Master doctype
-    go_master_list = frappe.get_all(
-        'Go Master', 
-        filters={"enabled": 1, "goshala_name": "Shree Vallabh Goshala - Vadla", "current_type": "Dujani"},
-        fields=['go_name', 'tag_number']
-    )
+    filters = {"enabled": 1, "current_type": "Dujani"}
+    if goshala_name:
+        filters["goshala_name"] = goshala_name
+    
+    go_master_list = frappe.get_all('Go Master', filters=filters, fields=['go_name', 'tag_number'])
     
     # Function to convert tag_number to a float if possible, otherwise return a high value
     def parse_tag_number(tag):
@@ -40,15 +40,11 @@ def fetch_go_master_list():
             return float('inf')
     
     # Sort the list using the custom key
-    sorted_go_master_list = sorted(
-        go_master_list, 
-        key=lambda x: parse_tag_number(x['tag_number'])
-    )
+    sorted_go_master_list = sorted(go_master_list, key=lambda x: parse_tag_number(x['tag_number']))
     
     return [{'go_name': go['go_name'], 'tag_number': go['tag_number']} for go in sorted_go_master_list]
 
 
-    
 # Fetch customer list in stock entry doctype where stock entry type is milk sales
 
 @frappe.whitelist()
@@ -255,3 +251,26 @@ def update_goshala_name(doc_id, goshala_name):
             return {"status": "error", "message": str(e)}
     else:
         return {"status": "error", "message": "Invalid ID"}
+
+# Update current type of mother when create new entry and type is birth
+ 
+@frappe.whitelist()
+def update_current_type(doc):
+    get_data = frappe.get_doc('Go Master', doc)
+    
+    if get_data.type == 'Birth':
+        mother_name = get_data.mother_name
+        
+        if mother_name:  # Check if mother_name is not blank
+            mother_name_value = frappe.get_doc("Go Master", mother_name)
+            
+            if mother_name_value:
+                mother_name_value.current_type = "Dujani"
+                mother_name_value.save()
+                return {"status": "success", "message": "Mother current type change has been updated to Dujani"}
+            else:
+                return {"status": "error", "message": "Mother Name ID is not in Go Master"}
+        else:
+            return {"status": "error", "message": "Mother Name Field Is Blank"}
+    else:
+        return 
