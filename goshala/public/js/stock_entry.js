@@ -181,6 +181,7 @@ function fetchGoMasterListForFiltering(frm) {
 // Get Customer from Customer where Customer is enabled
 
 function fetch_customer_list(frm) {
+    
     // Make an AJAX call to fetch data from the Go Master doctype
     frappe.call({
         method: 'goshala.goshala.doctype.api.fetch_customer_list',
