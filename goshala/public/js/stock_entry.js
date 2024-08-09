@@ -131,7 +131,7 @@ function fetchGoMasterListByBranch(frm) {
                     goshala_name: values.goshala
                 },
                 callback: function (response) {
-                    if (response.message) {
+                    if (response.message && response.message.length > 0) {
                         // Clear existing child table rows
                         frm.clear_table('items');
                         
@@ -147,6 +147,9 @@ function fetchGoMasterListByBranch(frm) {
                         
                         // Refresh the form to reflect the changes
                         frm.refresh_field('items');
+                    } else {
+                        // Show a message if no Go is fetched, replacing 'goshala' with the selected goshala name
+                        frappe.msgprint(`There is no Dujani cow in ${values.goshala}.`);
                     }
                 }
             });
@@ -155,6 +158,7 @@ function fetchGoMasterListByBranch(frm) {
     });
     dialog.show();
 }
+
 
 // if user add row and add Go so only show that Go where current type is dujani
 function fetchGoMasterListForFiltering(frm) {
