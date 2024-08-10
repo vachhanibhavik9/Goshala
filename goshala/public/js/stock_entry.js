@@ -149,7 +149,7 @@ function fetchGoMasterListByBranch(frm) {
                         frm.refresh_field('items');
                     } else {
                         // Show a message if no Go is fetched, replacing 'goshala' with the selected goshala name
-                        frappe.msgprint(`There is no Dujani cow in ${values.goshala}.`);
+                        frappe.msgprint(`There is no Dujani cow in ${values.goshala}`);
                     }
                 }
             });
