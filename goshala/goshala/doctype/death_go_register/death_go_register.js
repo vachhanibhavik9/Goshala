@@ -110,7 +110,7 @@ frappe.ui.form.on("Death Go Register", {
             },
             callback: function(r) {
                 if (r.message && r.message.status === "success") {
-                    frappe.msgprint(__("Go Master document has been disabled successfully."));
+                    frappe.msgprint(__(`Go Master ID ${(frm.doc.go_master_id)} document has been disabled successfully.`));
                 } else if (r.message && r.message.status === "error") {
                     frappe.msgprint(__("Error: " + r.message.message));
                 }

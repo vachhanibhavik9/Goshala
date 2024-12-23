@@ -137,7 +137,7 @@ frappe.ui.form.on("Transfer or Donate Go", {
                 },
                 callback: function (r) {
                     if (r.message && r.message.status === "success") {
-                        frappe.msgprint(__("Goshala Name in Go Master has been updated successfully."));
+                        frappe.msgprint(__(`Goshala Name in Go Master ID ${(frm.doc.go_master_id)} has been updated successfully.`));
                     } else if (r.message && r.message.status === "error") {
                         frappe.msgprint(__("Error: " + r.message.message));
                     }
